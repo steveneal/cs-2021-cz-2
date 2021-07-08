@@ -1,10 +1,15 @@
 package com.cs.rfq.decorator;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.streaming.Durations;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
+import org.apache.spark.streaming.api.java.JavaDStream;
+
+import java.util.Arrays;
 
 public class RfqDecoratorMain {
 
@@ -24,8 +29,12 @@ public class RfqDecoratorMain {
                 .getOrCreate();
 
         //TODO: create a new RfqProcessor and set it listening for incoming RFQs
-        
+        RfqProcessor rfqproc = new RfqProcessor(session, jssc);
+        rfqproc.startSocketListener();
+    }
 
+    static void consume(String line) {
+        System.out.println(line);
     }
 
 }
