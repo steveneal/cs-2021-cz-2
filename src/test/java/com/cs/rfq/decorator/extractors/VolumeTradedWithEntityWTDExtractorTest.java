@@ -25,34 +25,35 @@ public class VolumeTradedWithEntityWTDExtractorTest extends AbstractSparkUnitTes
     @Test
     public void checkVolumeWhenAllTradesMatch() {
 
-        String filePath = getClass().getResource("volume-traded-1.json").getPath();
+        String filePath = getClass().getResource("volume-traded-2.json").getPath();
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
         VolumeTradedWithEntityWTDExtractor extractor = new VolumeTradedWithEntityWTDExtractor();
-        extractor.setSince("2018-06-09");
+        extractor.setSince("2021-07-05");
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        Object result = meta.get(RfqMetadataFieldNames.volumeTradedMonthToDate);
+        Object result = meta.get(RfqMetadataFieldNames.volumeTradedWeekToDate);
 
-        assertEquals(600_000L, result);
+        assertEquals(750_000L, result);
     }
 
     @Test
-    public void checkVolumeWhenNoTradesMatch() {
+    public void checkVolumeWhenTradesMatch2() {
 
-        String filePath = getClass().getResource("volume-traded-1.json").getPath();
+        String filePath = getClass().getResource("volume-traded-2.json").getPath();
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
         //all test trade data are for 2018 so this will cause no matches
-        VolumeTradedWithEntityMTDExtractor extractor = new VolumeTradedWithEntityMTDExtractor();
-        extractor.setSince("2018-07-01");
+        VolumeTradedWithEntityWTDExtractor extractor = new VolumeTradedWithEntityWTDExtractor();
+        // extractor.setSince("2018-06-10");
+
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        Object result = meta.get(RfqMetadataFieldNames.volumeTradedYearToDate);
+        Object result = meta.get(RfqMetadataFieldNames.volumeTradedWeekToDate);
 
-        assertEquals(0L, result);
+        assertEquals(750_000L, result);
     }
 
 }

@@ -2,6 +2,8 @@ package com.cs.rfq.decorator.extractors;
 
 import org.joda.time.DateTime;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,12 +15,10 @@ public class VolumeTradedWithEntityWTDExtractor extends VolumeTradedWithEntityEx
     private String since;
 
     public VolumeTradedWithEntityWTDExtractor() {
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.DAY_OF_WEEK, cal.getActualMinimum(Calendar.DAY_OF_WEEK));
-        Date firstDayOfTheWeek = cal.getTime();
-        this.since = DateTime.now().getYear() + "-" + DateTime.now().getMonthOfYear() + "-" + DateTime.now().getWeekOfWeekyear();
-        System.out.println("since: " + since);
-        System.out.println(firstDayOfTheWeek.getDay());
+        LocalDate now = LocalDate.now();
+        int firstDayWeek = now.with(DayOfWeek.MONDAY).getDayOfMonth();
+        this.since = DateTime.now().getYear() + "-0" + DateTime.now().getMonthOfYear() + "-0" + firstDayWeek ;
+        System.out.println("since: " + this.since);
     }
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
