@@ -5,10 +5,12 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
+import java.text.DecimalFormat;
 import java.util.Map;
 
 public abstract class VolumeTradedWithEntityExtractor implements RfqMetadataExtractor {
 
+    protected DecimalFormat df = new DecimalFormat("00");
     protected String since;
 
     @Override

@@ -8,7 +8,8 @@ import java.util.Map;
 public class VolumeTradedWithEntityMTDExtractor extends VolumeTradedWithEntityExtractor {
 
     public VolumeTradedWithEntityMTDExtractor() {
-        this.since = DateTime.now().getYear() + '-' + DateTime.now().getMonthOfYear() +"-01";
+        this.since = DateTime.now().getYear() + "-" + df.format(DateTime.now().getMonthOfYear()) + "-01";
+        System.out.println(since);
     }
 
     @Override
