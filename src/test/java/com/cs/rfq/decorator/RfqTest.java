@@ -1,6 +1,7 @@
 package com.cs.rfq.decorator;
 
 import com.cs.rfq.decorator.Rfq;
+import com.google.gson.JsonParseException;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -30,5 +31,15 @@ public class RfqTest {
         assertEquals("B", rfq.getSide());
         assertTrue(rfq.isBuySide());
         assertFalse(rfq.isSellSide());
+    }
+
+    @Test(expected = JsonParseException.class)
+    public void testJSonFactoryMethodInvalidJson() {
+        String notvalidRfqJson = "{" +
+                "'idsds' NOTVALID '123ABC', " +
+                "'tradersdadId': 3351266293154445953, " +
+                "}";
+
+        Rfq rfq = Rfq.fromJson(notvalidRfqJson);
     }
 }
