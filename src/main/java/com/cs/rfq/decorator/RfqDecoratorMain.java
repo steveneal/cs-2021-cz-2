@@ -31,10 +31,7 @@ public class RfqDecoratorMain {
         //TODO: create a new RfqProcessor and set it listening for incoming RFQs
         RfqProcessor rfqproc = new RfqProcessor(session, jssc);
         rfqproc.startSocketListener();
-    }
 
-    static void consume(String line) {
-        System.out.println(line);
+        session.stop();
     }
-
 }
