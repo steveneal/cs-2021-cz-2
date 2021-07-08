@@ -55,7 +55,7 @@ public class RfqProcessor {
             try {
                 return Rfq.fromJson(x);
             } catch (JsonParseException e) {
-                log.warn(e.getMessage());
+                log.warn("Unable to parse json for RFQ: \n" + e.getMessage());
                 return null;
             }
         }).filter(x -> x != null);
