@@ -74,7 +74,7 @@ public class RfqProcessor {
         Map<RfqMetadataFieldNames, Object> metadata = new HashMap<>();
 
         //TODO: get metadata from each of the extractors
-        
+
 
         //TODO: publish the metadata
     }
