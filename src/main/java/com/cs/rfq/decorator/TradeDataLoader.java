@@ -1,6 +1,5 @@
 package com.cs.rfq.decorator;
 
-import org.apache.parquet.Log;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -16,7 +15,7 @@ public class TradeDataLoader {
 
     private final static Logger log = LoggerFactory.getLogger(TradeDataLoader.class);
 
-    //TODO: create an explicit schema for the trade data in the JSON files
+    // Schema for the trade data in the JSON files
     private static final StructType tradeDataSchema = new StructType(new StructField[]{
             new StructField("TraderId", LongType, false, Metadata.empty()),
             new StructField("EntityId", LongType, false, Metadata.empty()),
@@ -28,10 +27,9 @@ public class TradeDataLoader {
     });
 
     public Dataset<Row> loadTrades(SparkSession session, String path) {
-        //TODO: load the trades dataset
+        // Load the trades dataset
         Dataset<Row> trades = session.read().schema(tradeDataSchema).json(path);
 
-        //TODO: log a message indicating number of records loaded and the schema used
         log.info("Schema used for loading trade data:\n" + tradeDataSchema);
         log.info("Number of records loaded: " + trades.count());
 
