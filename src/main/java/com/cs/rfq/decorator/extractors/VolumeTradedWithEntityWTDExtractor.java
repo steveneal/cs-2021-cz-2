@@ -4,15 +4,10 @@ import org.joda.time.DateTime;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class VolumeTradedWithEntityWTDExtractor extends VolumeTradedWithEntityExtractor {
-
-    private String since;
 
     public VolumeTradedWithEntityWTDExtractor() {
         LocalDate now = LocalDate.now();

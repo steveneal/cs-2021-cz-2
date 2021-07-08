@@ -4,14 +4,12 @@ import com.cs.rfq.decorator.Rfq;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
-import org.joda.time.DateTime;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public abstract class VolumeTradedWithEntityExtractor implements RfqMetadataExtractor {
 
-    private String since;
+    protected String since;
 
     @Override
     public Map<RfqMetadataFieldNames, Object> extractMetaData(Rfq rfq, SparkSession session, Dataset<Row> trades) {
