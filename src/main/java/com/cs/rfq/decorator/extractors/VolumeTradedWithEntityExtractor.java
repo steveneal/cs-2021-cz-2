@@ -29,13 +29,12 @@ public abstract class VolumeTradedWithEntityExtractor implements RfqMetadataExtr
             volume = 0L;
         }
 
-        Map<RfqMetadataFieldNames, Object> results = new HashMap<>();
-        results.put(RfqMetadataFieldNames.volumeTradedYearToDate, volume);
-        return results;
+        return setVolumeTraded(volume);
     }
 
     protected void setSince(String since) {
         this.since = since;
     }
-    public abstract Map<RfqMetadataFieldNames, Object> setVolumeTraded();
+
+    protected abstract Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume);
 }

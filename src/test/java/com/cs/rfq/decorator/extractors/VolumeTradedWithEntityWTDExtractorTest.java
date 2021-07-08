@@ -28,14 +28,14 @@ public class VolumeTradedWithEntityWTDExtractorTest extends AbstractSparkUnitTes
         String filePath = getClass().getResource("volume-traded-1.json").getPath();
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
-        VolumeTradedWithEntityMTDExtractor extractor = new VolumeTradedWithEntityMTDExtractor();
-        extractor.setSince("2018-06-01");
+        VolumeTradedWithEntityWTDExtractor extractor = new VolumeTradedWithEntityWTDExtractor();
+        extractor.setSince("2018-06-09");
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
         Object result = meta.get(RfqMetadataFieldNames.volumeTradedMonthToDate);
 
-        assertEquals(1_350_000L, result);
+        assertEquals(600_000L, result);
     }
 
     @Test

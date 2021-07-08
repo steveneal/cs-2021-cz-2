@@ -9,36 +9,20 @@ import org.joda.time.DateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VolumeTradedWithEntityMTDExtractor implements RfqMetadataExtractor {
+public class VolumeTradedWithEntityMTDExtractor extends VolumeTradedWithEntityExtractor {
 
     private String since;
-    // we will have to modify this to setup the actual month
+
     public VolumeTradedWithEntityMTDExtractor() {
-        this.since = DateTime.now().getYear() + DateTime.now().getMonthOfYear() +"-01";
+        this.since = DateTime.now().getYear() + '-' + DateTime.now().getMonthOfYear() +"-01";
     }
 
     @Override
-    public Map<RfqMetadataFieldNames, Object> extractMetaData(Rfq rfq, SparkSession session, Dataset<Row> trades) {
-
-        String query = String.format("SELECT sum(LastQty) from trade where EntityId='%s' AND SecurityId='%s' AND TradeDate >= '%s'",
-                rfq.getEntityId(),
-                rfq.getIsin(),
-                since);
-
-        trades.createOrReplaceTempView("trade");
-        Dataset<Row> sqlQueryResults = session.sql(query);
-
-        Object volume = sqlQueryResults.first().get(0);
-        if (volume == null) {
-            volume = 0L;
-        }
-
+    public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();
         results.put(RfqMetadataFieldNames.volumeTradedMonthToDate, volume);
         return results;
     }
 
-    protected void setSince(String since) {
-        this.since = since;
-    }
+
 }
