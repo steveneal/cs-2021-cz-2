@@ -13,8 +13,8 @@ public class VolumeTradedWithEntityWTDExtractor extends VolumeTradedWithEntityEx
         LocalDate now = LocalDate.now();
         int firstDayWeek = now.with(DayOfWeek.MONDAY).getDayOfMonth();
         this.since = DateTime.now().getYear() + "-" + df.format(DateTime.now().getMonthOfYear()) + "-" + df.format(firstDayWeek);
-        System.out.println("since: " + this.since);
     }
+
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();

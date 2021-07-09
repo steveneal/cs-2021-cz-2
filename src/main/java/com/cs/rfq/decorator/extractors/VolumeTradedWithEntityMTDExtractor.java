@@ -9,7 +9,6 @@ public class VolumeTradedWithEntityMTDExtractor extends VolumeTradedWithEntityEx
 
     public VolumeTradedWithEntityMTDExtractor() {
         this.since = DateTime.now().getYear() + "-" + df.format(DateTime.now().getMonthOfYear()) + "-01";
-        System.out.println(since);
     }
 
     @Override
