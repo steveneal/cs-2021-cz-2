@@ -23,7 +23,7 @@ public class RfqProcessor {
 
     private final static Logger log = LoggerFactory.getLogger(RfqProcessor.class);
 
-    private static Gson gson = new GsonBuilder().create();
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     private final SparkSession session;
 
@@ -80,6 +80,7 @@ public class RfqProcessor {
             metadata.putAll(rfqMetadataExtractor.extractMetaData(rfq, session, trades));
         }
         metadata.put(RfqMetadataFieldNames.rfqId, rfq.getId());
+
         // Publish the metadata
         System.out.println(gson.toJson(metadata));
     }
