@@ -35,7 +35,7 @@ public class VolumeTradedWithEntityWTDExtractorTest extends AbstractSparkUnitTes
 
         Object result = meta.get(RfqMetadataFieldNames.volumeTradedWeekToDate);
 
-        assertEquals(1_350_000L, result);
+        assertEquals(1_355_000L, result);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class VolumeTradedWithEntityWTDExtractorTest extends AbstractSparkUnitTes
 
         Object result = meta.get(RfqMetadataFieldNames.volumeTradedWeekToDate);
 
-        assertEquals(750_000L, result);
+        assertEquals(755_000L, result);
     }
 
     @Test

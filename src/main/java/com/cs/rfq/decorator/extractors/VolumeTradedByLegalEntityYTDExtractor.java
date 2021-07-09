@@ -8,7 +8,7 @@ import java.util.Map;
 public class VolumeTradedByLegalEntityYTDExtractor extends VolumeTradedByLegalEntityExtractor {
 
     public VolumeTradedByLegalEntityYTDExtractor() {
-        this.since = DateTime.now().getYear() + "-01-01";
+        this.since = dateUtil.getLastYearToDate();
     }
 
     @Override

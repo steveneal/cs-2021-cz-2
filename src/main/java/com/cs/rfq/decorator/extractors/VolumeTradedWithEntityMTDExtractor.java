@@ -1,14 +1,12 @@
 package com.cs.rfq.decorator.extractors;
 
-import org.joda.time.DateTime;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class VolumeTradedWithEntityMTDExtractor extends VolumeTradedWithEntityExtractor {
 
     public VolumeTradedWithEntityMTDExtractor() {
-        this.since = DateTime.now().getYear() + "-" + df.format(DateTime.now().getMonthOfYear()) + "-01";
+        this.since = dateUtil.getLastMonthToDate();
     }
 
     @Override

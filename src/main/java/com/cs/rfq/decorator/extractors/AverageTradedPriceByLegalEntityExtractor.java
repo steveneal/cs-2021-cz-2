@@ -5,14 +5,9 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
-import java.text.DecimalFormat;
 import java.util.Map;
 
-public abstract class AverageTradedPriceByLegalEntityExtractor implements RfqMetadataExtractor {
-
-    protected DecimalFormat df = new DecimalFormat("00");
-    protected String since;
-
+public abstract class AverageTradedPriceByLegalEntityExtractor extends VolumeTradedByBase {
     @Override
     public Map<RfqMetadataFieldNames, Object> extractMetaData(Rfq rfq, SparkSession session, Dataset<Row> trades) {
 
@@ -20,7 +15,7 @@ public abstract class AverageTradedPriceByLegalEntityExtractor implements RfqMet
                 rfq.getEntityId(),
                 rfq.getIsin(),
                 since);
-        //AVG(LastPx)
+
         trades.createOrReplaceTempView("trade");
         Dataset<Row> sqlQueryResults = session.sql(query);
 
@@ -31,10 +26,4 @@ public abstract class AverageTradedPriceByLegalEntityExtractor implements RfqMet
 
         return setVolumeTraded(volume);
     }
-
-    protected void setSince(String since) {
-        this.since = since;
-    }
-
-    protected abstract Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume);
 }

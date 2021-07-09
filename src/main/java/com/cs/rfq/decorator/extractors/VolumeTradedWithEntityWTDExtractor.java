@@ -10,9 +10,7 @@ import java.util.Map;
 public class VolumeTradedWithEntityWTDExtractor extends VolumeTradedWithEntityExtractor {
 
     public VolumeTradedWithEntityWTDExtractor() {
-        LocalDate now = LocalDate.now();
-        int firstDayWeek = now.with(DayOfWeek.MONDAY).getDayOfMonth();
-        this.since = DateTime.now().getYear() + "-" + df.format(DateTime.now().getMonthOfYear()) + "-" + df.format(firstDayWeek);
+        this.since = dateUtil.getLastWeekToDate();
     }
 
     @Override

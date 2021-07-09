@@ -1,14 +1,12 @@
 package com.cs.rfq.decorator.extractors;
 
-import org.joda.time.DateTime;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class VolumeTradedWithEntityYTDExtractor extends VolumeTradedWithEntityExtractor {
 
     public VolumeTradedWithEntityYTDExtractor() {
-        this.since = DateTime.now().getYear() + "-01-01";
+        this.since = dateUtil.getLastYearToDate();
     }
 
     @Override
