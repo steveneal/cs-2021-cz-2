@@ -1,9 +1,6 @@
 package com.cs.rfq.decorator;
 
-import com.cs.rfq.decorator.extractors.RfqMetadataExtractor;
-import com.cs.rfq.decorator.extractors.RfqMetadataFieldNames;
-import com.cs.rfq.decorator.extractors.TotalTradesWithEntityExtractor;
-import com.cs.rfq.decorator.extractors.VolumeTradedWithEntityYTDExtractor;
+import com.cs.rfq.decorator.extractors.*;
 import com.cs.rfq.decorator.publishers.MetadataJsonLogPublisher;
 import com.cs.rfq.decorator.publishers.MetadataPublisher;
 import com.google.gson.JsonParseException;
@@ -43,6 +40,8 @@ public class RfqProcessor {
 
         extractors.add(new TotalTradesWithEntityExtractor());
         extractors.add(new VolumeTradedWithEntityYTDExtractor());
+        //extractors.add(new VolumeTradedWithEntityMTDExtractor());
+        //extractors.add(new VolumeTradedWithEntityWTDExtractor());
     }
 
     public void startSocketListener() throws InterruptedException {
@@ -70,12 +69,16 @@ public class RfqProcessor {
 
         // Create a blank map for the metadata to be collected
         Map<RfqMetadataFieldNames, Object> metadata = new HashMap<>();
-
+        /*
         //TODO: get metadata from each of the extractors
         // Features to implement
-
+        for (RfqMetadataExtractor rfqMetadataExtractor : extractors) {
+            metadata.putAll(rfqMetadataExtractor.extractMetaData(rfq, session, trades));
+        }
         //TODO: publish the metadata
         // Dummy
-        // Log.info(metadata)
+        log.info(metadata.toString());
+
+         */
     }
 }
