@@ -24,15 +24,7 @@ public class VolumeTradedByLegalEntityWTDExtractorTest extends AbstractSparkUnit
     @Test
     public void checkVolumeWhenAllTradesMatch() {
 
-        String filePath = getClass().getResource("volume-traded-2.json").getPath();
-        Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
-
-        VolumeTradedByLegalEntityWTDExtractor extractor = new VolumeTradedByLegalEntityWTDExtractor();
-        extractor.setSince("2021-06-28");
-
-        Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
-
-        Object result = meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityWeekToDate);
+        Object result = extractData("2021-06-28");
 
         assertEquals(1_355_000L, result);
     }
@@ -40,15 +32,7 @@ public class VolumeTradedByLegalEntityWTDExtractorTest extends AbstractSparkUnit
     @Test
     public void checkVolumeWhenWeeklyTradesMatch() {
 
-        String filePath = getClass().getResource("volume-traded-2.json").getPath();
-        Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
-
-        VolumeTradedByLegalEntityWTDExtractor extractor = new VolumeTradedByLegalEntityWTDExtractor();
-        extractor.setSince("2021-07-05");
-
-        Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
-
-        Object result = meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityWeekToDate);
+        Object result = extractData("2021-07-05");
 
         assertEquals(755_000L, result);
     }
@@ -56,18 +40,21 @@ public class VolumeTradedByLegalEntityWTDExtractorTest extends AbstractSparkUnit
     @Test
     public void checkVolumeWhenNoTradesMatch() {
 
+        Object result = extractData("2022-01-01");
+
+        assertEquals(0L, result);
+    }
+
+    private Object extractData(String since) {
         String filePath = getClass().getResource("volume-traded-2.json").getPath();
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
-        //all test trade data are for 2018 so this will cause no matches
-        VolumeTradedWithEntityYTDExtractor extractor = new VolumeTradedWithEntityYTDExtractor();
-        extractor.setSince("2022-01-01");
+        VolumeTradedWithEntityWTDExtractor extractor = new VolumeTradedWithEntityWTDExtractor();
+        extractor.setSince(since);
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        Object result = meta.get(RfqMetadataFieldNames.volumeTradedYearToDate);
-
-        assertEquals(0L, result);
+        return meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityWeekToDate);
     }
 
 }
