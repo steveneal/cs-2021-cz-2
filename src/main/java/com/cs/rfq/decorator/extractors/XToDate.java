@@ -1,9 +1,7 @@
 package com.cs.rfq.decorator.extractors;
 
-import org.joda.time.DateTime;
 
 import java.text.DecimalFormat;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class XToDate {
@@ -11,17 +9,22 @@ public class XToDate {
     private DecimalFormat df = new DecimalFormat("00");
 
     public String getLastYearToDate() {
-        return DateTime.now().getYear() + "-01-01";
+        LocalDate now = LocalDate.now().minusDays(365);
+        return now.getYear() + "-" + df.format(now.getMonthValue()) + "-" + df.format(now.getDayOfMonth());
     }
 
     public String getLastMonthToDate() {
-        return DateTime.now().getYear() + "-" + df.format(DateTime.now().getMonthOfYear()) + "-01";
+        LocalDate now = LocalDate.now().minusDays(30);
+        return now.getYear() + "-" + df.format(now.getMonthValue()) + "-" + df.format(now.getDayOfMonth());
     }
 
     public String getLastWeekToDate() {
-        LocalDate now = LocalDate.now();
-        int firstDayWeek = now.with(DayOfWeek.MONDAY).getDayOfMonth();
-        return DateTime.now().getYear() + "-" + df.format(DateTime.now().getMonthOfYear()) + "-" + df.format(firstDayWeek);
+        LocalDate now = LocalDate.now().minusDays(7);
+        return now.getYear() + "-" + df.format(now.getMonthValue()) + "-" + df.format(now.getDayOfMonth());
+    }
 
+    public String actualDate() {
+        LocalDate now = LocalDate.now();
+        return now.getYear() + "-" + df.format(now.getMonthValue()) + "-" + df.format(now.getDayOfMonth());
     }
 }

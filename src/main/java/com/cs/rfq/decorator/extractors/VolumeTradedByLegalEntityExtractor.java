@@ -12,9 +12,10 @@ public abstract class VolumeTradedByLegalEntityExtractor extends VolumeTradedByB
     @Override
     public Map<RfqMetadataFieldNames, Object> extractMetaData(Rfq rfq, SparkSession session, Dataset<Row> trades) {
 
-        String query = String.format("SELECT sum(LastQty) from trade where EntityId='%s' AND TradeDate >= '%s'",
+        String query = String.format("SELECT sum(LastQty) from trade where EntityId='%s' AND TradeDate >= '%s' AND TradeDate <= '%s'",
                 rfq.getEntityId(),
-                since);
+                since,
+                until);
 
         trades.createOrReplaceTempView("trade");
         Dataset<Row> sqlQueryResults = session.sql(query);

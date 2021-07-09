@@ -39,6 +39,7 @@ public class VolumeTradedByLegalEntityMTDExtractorTest extends AbstractSparkUnit
 
     private Object extractData(String filename, String since) {
         String filePath = getClass().getResource(filename).getPath();
+
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
         VolumeTradedByLegalEntityMTDExtractor extractor = new VolumeTradedByLegalEntityMTDExtractor();
