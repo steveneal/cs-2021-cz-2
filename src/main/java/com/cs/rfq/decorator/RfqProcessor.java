@@ -9,6 +9,7 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
+import org.mortbay.log.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,8 +41,8 @@ public class RfqProcessor {
 
         extractors.add(new TotalTradesWithEntityExtractor());
         extractors.add(new VolumeTradedWithEntityYTDExtractor());
-        //extractors.add(new VolumeTradedWithEntityMTDExtractor());
-        //extractors.add(new VolumeTradedWithEntityWTDExtractor());
+        extractors.add(new VolumeTradedWithEntityMTDExtractor());
+        extractors.add(new VolumeTradedWithEntityWTDExtractor());
     }
 
     public void startSocketListener() throws InterruptedException {
@@ -69,7 +70,7 @@ public class RfqProcessor {
 
         // Create a blank map for the metadata to be collected
         Map<RfqMetadataFieldNames, Object> metadata = new HashMap<>();
-        /*
+
         //TODO: get metadata from each of the extractors
         // Features to implement
         for (RfqMetadataExtractor rfqMetadataExtractor : extractors) {
@@ -79,6 +80,5 @@ public class RfqProcessor {
         // Dummy
         log.info(metadata.toString());
 
-         */
     }
 }
