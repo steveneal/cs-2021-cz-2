@@ -18,6 +18,10 @@ public class XToDate {
         return DateTime.now().getYear() + "-" + df.format(DateTime.now().getMonthOfYear()) + "-01";
     }
 
+    public String getOneMonthBeforeDate() {
+        return LocalDate.now().minusMonths(1).toString();
+    }
+
     public String getLastWeekToDate() {
         LocalDate now = LocalDate.now();
         int firstDayWeek = now.with(DayOfWeek.MONDAY).getDayOfMonth();

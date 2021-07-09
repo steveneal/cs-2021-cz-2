@@ -1,6 +1,9 @@
 package com.cs.rfq.utils;
 
-import org.jline.reader.*;
+import org.jline.reader.EndOfFileException;
+import org.jline.reader.LineReader;
+import org.jline.reader.LineReaderBuilder;
+import org.jline.reader.MaskingCallback;
 import org.jline.reader.impl.DefaultParser;
 import org.jline.reader.impl.history.DefaultHistory;
 import org.jline.terminal.Terminal;
@@ -102,7 +105,7 @@ public class ChatterboxServer {
                     log("sent", line);
                 }
             } catch (EndOfFileException e) {
-               log("connection closed by server");
+                log("connection closed by server");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -126,7 +129,7 @@ public class ChatterboxServer {
     }
 
     private static void log(String status) {
-        log(status,"");
+        log(status, "");
     }
 
     private static void log(String status, String message) {
