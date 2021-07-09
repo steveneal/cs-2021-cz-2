@@ -3,19 +3,16 @@ package com.cs.rfq.decorator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.Serializable;
-import java.lang.reflect.Type;
-import java.util.Map;
 
 public class Rfq implements Serializable {
     private String id;
-    @SerializedName(value="instrumentId")
+    @SerializedName(value = "instrumentId")
     private String isin;
     private Long traderId;
     private Long entityId;
-    @SerializedName(value="qty")
+    @SerializedName(value = "qty")
     private Long quantity;
     private Double price;
     private String side;
