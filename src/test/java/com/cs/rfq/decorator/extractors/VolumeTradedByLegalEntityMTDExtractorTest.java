@@ -32,7 +32,7 @@ public class VolumeTradedByLegalEntityMTDExtractorTest extends AbstractSparkUnit
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        Object result = meta.get(RfqMetadataFieldNames.volumeTradedMonthToDate);
+        Object result = meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityMonthToDate);
 
         assertEquals(400_000L, result);
     }
@@ -49,7 +49,7 @@ public class VolumeTradedByLegalEntityMTDExtractorTest extends AbstractSparkUnit
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        Object result = meta.get(RfqMetadataFieldNames.volumeTradedMonthToDate);
+        Object result = meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityMonthToDate);
 
         assertEquals(0L, result);
     }

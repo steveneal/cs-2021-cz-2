@@ -11,45 +11,46 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class VolumeTradedByLegalEntityYTDExtractorTest extends AbstractSparkUnitTest {
+public class AverageTradedPriceByLegalEntityWTDExtractorTest extends AbstractSparkUnitTest {
 
     private Rfq rfq;
 
     @Before
     public void setup() {
         rfq = new Rfq();
-        rfq.setEntityId(5561279226039690842L);
+        rfq.setEntityId(5561279226039690843L);
+        rfq.setIsin("AT0000A0VRQ6");
     }
 
     @Test
-    public void checkVolumeWhenLegalEntityMatch() {
+    public void checkVolumeWhenAllTradesMatch() {
 
-        String filePath = getClass().getResource("volume-traded-by-legal-entity.json").getPath();
+        String filePath = getClass().getResource("volume-traded-1.json").getPath();
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
-        VolumeTradedByLegalEntityYTDExtractor extractor = new VolumeTradedByLegalEntityYTDExtractor();
+        AverageTradedPriceByLegalEntityWTDExtractor extractor = new AverageTradedPriceByLegalEntityWTDExtractor();
         extractor.setSince("2018-01-01");
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        Object result = meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityYearToDate);
+        Object result = meta.get(RfqMetadataFieldNames.averageTradedPriceByLegalEntityWeektoDate);
 
-        assertEquals(400_000L, result);
+        assertEquals(132.320, result);
     }
 
     @Test
-    public void checkVolumeWhenNoLegalEntityMatch() {
+    public void checkVolumeWhenNoTradesMatch() {
 
         String filePath = getClass().getResource("volume-traded-1.json").getPath();
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
         //all test trade data are for 2018 so this will cause no matches
-        VolumeTradedByLegalEntityYTDExtractor extractor = new VolumeTradedByLegalEntityYTDExtractor();
+        AverageTradedPriceByLegalEntityWTDExtractor extractor = new AverageTradedPriceByLegalEntityWTDExtractor();
         extractor.setSince("2019-01-01");
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        Object result = meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityYearToDate);
+        Object result = meta.get(RfqMetadataFieldNames.averageTradedPriceByLegalEntityWeektoDate);
 
         assertEquals(0L, result);
     }

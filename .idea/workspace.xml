@@ -2,17 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3af39614-5fdb-4ae4-996d-75cacc965a08" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityExtractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityWTDExtractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityWTDExtractorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-by-legal-entity.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/AverageTradedPriceByLegalEntityExtractor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/AverageTradedPriceByLegalEntityWTDExtractor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/AverageTradedPriceByLegalEntityWTDExtractorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/RfqProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/RfqProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-2.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/RfqMetadataFieldNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/RfqMetadataFieldNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityWTDExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityWTDExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityWTDExtractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityWTDExtractorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractorTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,29 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedWithEntityExtractor.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/AverageTradedPriceByLegalEntityExtractor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="12" column="57" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityExtractor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="19" column="31" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractorTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="26" column="79" lean-forward="true" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="79" />
+            <state relative-caret-position="151">
+              <caret line="18" column="89" selection-start-line="18" selection-start-column="88" selection-end-line="18" selection-end-column="89" />
             </state>
           </provider>
         </entry>
@@ -57,56 +39,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractorTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityWTDExtractorTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="167">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-by-legal-entity.json">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/AverageTradedPriceByLegalEntityWTDExtractorTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="63" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="16" column="74" lean-forward="true" selection-start-line="16" selection-start-column="74" selection-end-line="16" selection-end-column="74" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityWTDExtractor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="228">
+              <caret line="30" column="49" lean-forward="true" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -114,8 +57,62 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-2.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="130" selection-start-line="3" selection-start-column="126" selection-end-line="3" selection-end-column="130" />
+            <state relative-caret-position="34">
+              <caret line="2" column="154" lean-forward="true" selection-start-line="2" selection-start-column="154" selection-end-line="2" selection-end-column="154" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-1.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="144" lean-forward="true" selection-start-column="144" selection-end-column="144" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/RfqMetadataFieldNames.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="45" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/TotalTradesWithEntityExtractor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="34" column="22" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="14" column="61" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityExtractor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="18" column="110" selection-start-line="18" selection-start-column="110" selection-end-line="18" selection-end-column="110" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/AverageTradedPriceByLegalEntityWTDExtractor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -132,11 +129,14 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>AT0000A0VRQ6</find>
-      <find>VolumeTradedWithEntityWTDExtractor</find>
       <find>5561279226039690843L</find>
       <find>5561279226039690843</find>
-      <find>VolumeTradedWithEntityYTDExtractor</find>
       <find>VolumeTradedWithEntityMTDExtractor</find>
+      <find>VolumeTradedWithEntityWTDExtractor</find>
+      <find>volumeTradedMonthToDate</find>
+      <find>volumeTradedByLegalEntityMonthToDate</find>
+      <find>setVolumeTraded</find>
+      <find>VolumeTradedWithEntityYTDExtractor</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -153,22 +153,25 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/test.txt" />
         <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedWithEntityYTDExtractor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/RfqMetadataFieldNames.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedWithEntityMTDExtractor.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedWithEntityMTDExtractorTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedWithEntityWTDExtractor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedWithEntityExtractor.java" />
-        <option value="$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-2.json" />
         <option value="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedWithEntityWTDExtractorTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/RfqProcessor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityWTDExtractor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityExtractor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractor.java" />
         <option value="$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-by-legal-entity.json" />
-        <option value="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractorTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractor.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractorTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityWTDExtractorTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractorTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityWTDExtractor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/RfqMetadataFieldNames.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/AverageTradedPriceByLegalEntityWTDExtractor.java" />
+        <option value="$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-2.json" />
+        <option value="$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/AverageTradedPriceByLegalEntityWTDExtractorTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/AverageTradedPriceByLegalEntityExtractor.java" />
       </list>
     </option>
   </component>
@@ -339,16 +342,34 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.VolumeTradedByLegalEntityWTDExtractorTest">
-    <configuration name="RfqDecoratorMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.cs.rfq.decorator.RfqDecoratorMain" />
+  <component name="RunManager" selected="JUnit.AverageTradedPriceByLegalEntityWTDExtractorTest.checkVolumeWhenAllTradesMatch">
+    <configuration name="AverageTradedPriceByLegalEntityWTDExtractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cs-project" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.cs.rfq.decorator.*" />
+          <option name="PATTERN" value="com.cs.rfq.decorator.extractors.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.cs.rfq.decorator.extractors" />
+      <option name="MAIN_CLASS_NAME" value="com.cs.rfq.decorator.extractors.AverageTradedPriceByLegalEntityWTDExtractorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AverageTradedPriceByLegalEntityWTDExtractorTest.checkVolumeWhenAllTradesMatch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cs-project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cs.rfq.decorator.extractors.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cs.rfq.decorator.extractors" />
+      <option name="MAIN_CLASS_NAME" value="com.cs.rfq.decorator.extractors.AverageTradedPriceByLegalEntityWTDExtractorTest" />
+      <option name="METHOD_NAME" value="checkVolumeWhenAllTradesMatch" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -398,29 +419,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VolumeTradedByLegalEntityYTDExtractorTest.checkVolumeWhenLegalEntityMatch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="cs-project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cs.rfq.decorator.extractors.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cs.rfq.decorator.extractors" />
-      <option name="MAIN_CLASS_NAME" value="com.cs.rfq.decorator.extractors.VolumeTradedByLegalEntityYTDExtractorTest" />
-      <option name="METHOD_NAME" value="checkVolumeWhenLegalEntityMatch" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AverageTradedPriceByLegalEntityWTDExtractorTest.checkVolumeWhenAllTradesMatch" />
+        <item itemvalue="JUnit.AverageTradedPriceByLegalEntityWTDExtractorTest" />
+        <item itemvalue="JUnit.VolumeTradedByLegalEntityYTDExtractorTest" />
         <item itemvalue="JUnit.VolumeTradedByLegalEntityWTDExtractorTest" />
         <item itemvalue="JUnit.VolumeTradedByLegalEntityMTDExtractorTest" />
-        <item itemvalue="JUnit.VolumeTradedByLegalEntityYTDExtractorTest.checkVolumeWhenLegalEntityMatch" />
-        <item itemvalue="JUnit.VolumeTradedByLegalEntityYTDExtractorTest" />
-        <item itemvalue="Application.RfqDecoratorMain" />
       </list>
     </recent_temporary>
   </component>
@@ -438,24 +443,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="VolumeTradedWithEntityWTDExtractorTest_checkVolumeWhenNoTradesMatch - 2021.07.08 at 11h 36m 40s.xml">
-      <configuration name="VolumeTradedWithEntityWTDExtractorTest.checkVolumeWhenNoTradesMatch" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="VolumeTradedWithEntityYTDExtractorTest - 2021.07.08 at 14h 33m 42s.xml">
-      <configuration name="VolumeTradedWithEntityYTDExtractorTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="VolumeTradedWithEntityWTDExtractorTest_checkVolumeWhenAllTradesMatch - 2021.07.08 at 14h 34m 13s.xml">
-      <configuration name="VolumeTradedWithEntityWTDExtractorTest.checkVolumeWhenAllTradesMatch" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="VolumeTradedWithEntityWTDExtractorTest_checkVolumeWhenTradesMatch2 - 2021.07.08 at 14h 35m 10s.xml">
-      <configuration name="VolumeTradedWithEntityWTDExtractorTest.checkVolumeWhenTradesMatch2" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="VolumeTradedWithEntityWTDExtractorTest_checkVolumeWhenTradesMatch2 - 2021.07.08 at 14h 37m 08s.xml">
-      <configuration name="VolumeTradedWithEntityWTDExtractorTest.checkVolumeWhenTradesMatch2" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="VolumeTradedWithEntityWTDExtractorTest_checkVolumeWhenTradesMatch2 - 2021.07.09 at 03h 46m 32s.xml">
-      <configuration name="VolumeTradedWithEntityWTDExtractorTest.checkVolumeWhenTradesMatch2" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="VolumeTradedWithEntityWTDExtractorTest_checkVolumeWhenTradesMatch2 - 2021.07.09 at 03h 51m 15s.xml">
       <configuration name="VolumeTradedWithEntityWTDExtractorTest.checkVolumeWhenTradesMatch2" configurationId="JUnit" />
     </history-entry>
@@ -467,6 +454,24 @@
     </history-entry>
     <history-entry file="VolumeTradedByLegalEntityYTDExtractorTest_checkVolumeWhenLegalEntityMatch - 2021.07.09 at 04h 28m 21s.xml">
       <configuration name="VolumeTradedByLegalEntityYTDExtractorTest.checkVolumeWhenLegalEntityMatch" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="VolumeTradedByLegalEntityMTDExtractorTest - 2021.07.09 at 04h 33m 19s.xml">
+      <configuration name="VolumeTradedByLegalEntityMTDExtractorTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="VolumeTradedByLegalEntityWTDExtractorTest - 2021.07.09 at 04h 33m 57s.xml">
+      <configuration name="VolumeTradedByLegalEntityWTDExtractorTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="VolumeTradedByLegalEntityWTDExtractorTest - 2021.07.09 at 04h 34m 59s.xml">
+      <configuration name="VolumeTradedByLegalEntityWTDExtractorTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="VolumeTradedByLegalEntityYTDExtractorTest - 2021.07.09 at 04h 57m 05s.xml">
+      <configuration name="VolumeTradedByLegalEntityYTDExtractorTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AverageTradedPriceByLegalEntityWTDExtractorTest - 2021.07.09 at 05h 22m 32s.xml">
+      <configuration name="AverageTradedPriceByLegalEntityWTDExtractorTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AverageTradedPriceByLegalEntityWTDExtractorTest_checkVolumeWhenAllTradesMatch - 2021.07.09 at 05h 24m 01s.xml">
+      <configuration name="AverageTradedPriceByLegalEntityWTDExtractorTest.checkVolumeWhenAllTradesMatch" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -542,34 +547,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/RfqMetadataFieldNames.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-1.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/RfqMetadataExtractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedWithEntityYTDExtractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedWithEntityYTDExtractorTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -605,13 +582,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/TotalTradesWithEntityExtractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="23" column="60" selection-start-line="23" selection-start-column="57" selection-end-line="23" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedWithEntityWTDExtractorTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="604">
@@ -619,10 +589,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedWithEntityMTDExtractor.java">
+    <entry file="file://$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-by-legal-entity.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="63" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="8" lean-forward="true" selection-start-line="1" selection-end-line="1" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedWithEntityYTDExtractor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="10" column="91" selection-start-line="10" selection-start-column="89" selection-end-line="10" selection-end-column="91" />
+          <caret line="12" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="12" />
         </state>
       </provider>
     </entry>
@@ -635,74 +619,123 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedWithEntityExtractor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="12" column="57" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="57" />
+        <state relative-caret-position="187">
+          <caret line="18" column="89" selection-start-line="18" selection-start-column="75" selection-end-line="18" selection-end-column="89" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityWTDExtractor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/RfqMetadataExtractor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedWithEntityMTDExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="16" column="74" lean-forward="true" selection-start-line="16" selection-start-column="74" selection-end-line="16" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityExtractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-2.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="130" selection-start-line="3" selection-start-column="126" selection-end-line="3" selection-end-column="130" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-by-legal-entity.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="63" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="26" column="79" lean-forward="true" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+          <caret line="16" column="77" selection-start-line="16" selection-start-column="77" selection-end-line="16" selection-end-column="77" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityWTDExtractorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        <state relative-caret-position="340">
+          <caret line="50" column="90" selection-start-line="50" selection-start-column="90" selection-end-line="50" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityYTDExtractorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="45" column="66" lean-forward="true" selection-start-line="45" selection-start-column="66" selection-end-line="45" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityWTDExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/TotalTradesWithEntityExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="34" column="22" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/AverageTradedPriceByLegalEntityWTDExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="14" column="61" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityMTDExtractorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/RfqMetadataFieldNames.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="45" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-1.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="144" lean-forward="true" selection-start-column="144" selection-end-column="144" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/com/cs/rfq/decorator/extractors/volume-traded-2.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="154" lean-forward="true" selection-start-line="2" selection-start-column="154" selection-end-line="2" selection-end-column="154" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/VolumeTradedByLegalEntityExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="18" column="110" selection-start-line="18" selection-start-column="110" selection-end-line="18" selection-end-column="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/cs/rfq/decorator/extractors/AverageTradedPriceByLegalEntityWTDExtractorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="30" column="49" lean-forward="true" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cs/rfq/decorator/extractors/AverageTradedPriceByLegalEntityExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="18" column="89" selection-start-line="18" selection-start-column="88" selection-end-line="18" selection-end-column="89" />
         </state>
       </provider>
     </entry>

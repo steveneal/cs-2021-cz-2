@@ -14,7 +14,7 @@ public class VolumeTradedByLegalEntityMTDExtractor extends VolumeTradedByLegalEn
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();
-        results.put(RfqMetadataFieldNames.volumeTradedMonthToDate, volume);
+        results.put(RfqMetadataFieldNames.volumeTradedByLegalEntityMonthToDate, volume);
         return results;
     }
 
