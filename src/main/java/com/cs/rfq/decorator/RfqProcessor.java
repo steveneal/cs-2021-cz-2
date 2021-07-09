@@ -82,7 +82,7 @@ public class RfqProcessor {
         }
         metadata.put(RfqMetadataFieldNames.rfqId, rfq.getId());
         // Publish the metadata
-        log.info(gson.toJson(metadata));
+        System.out.println(gson.toJson(metadata));
 
     }
 }
