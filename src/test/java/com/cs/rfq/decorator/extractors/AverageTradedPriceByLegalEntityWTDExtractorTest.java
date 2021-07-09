@@ -25,15 +25,7 @@ public class AverageTradedPriceByLegalEntityWTDExtractorTest extends AbstractSpa
     @Test
     public void checkVolumeWhenAllTradesMatch() {
 
-        String filePath = getClass().getResource("volume-traded-1.json").getPath();
-        Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
-
-        AverageTradedPriceByLegalEntityWTDExtractor extractor = new AverageTradedPriceByLegalEntityWTDExtractor();
-        extractor.setSince("2018-01-01");
-
-        Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
-
-        Object result = meta.get(RfqMetadataFieldNames.averageTradedPriceByLegalEntityWeektoDate);
+        Object result = extractData("2018-01-01");
 
         assertEquals(132.320, result);
     }
@@ -41,18 +33,21 @@ public class AverageTradedPriceByLegalEntityWTDExtractorTest extends AbstractSpa
     @Test
     public void checkVolumeWhenNoTradesMatch() {
 
+        Object result = extractData("2019-01-01");
+
+        assertEquals(0L, result);
+    }
+
+    private Object extractData(String since) {
         String filePath = getClass().getResource("volume-traded-1.json").getPath();
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
-        //all test trade data are for 2018 so this will cause no matches
         AverageTradedPriceByLegalEntityWTDExtractor extractor = new AverageTradedPriceByLegalEntityWTDExtractor();
-        extractor.setSince("2019-01-01");
+        extractor.setSince(since);
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        Object result = meta.get(RfqMetadataFieldNames.averageTradedPriceByLegalEntityWeektoDate);
-
-        assertEquals(0L, result);
+        return meta.get(RfqMetadataFieldNames.averageTradedPriceByLegalEntityWeektoDate);
     }
 
 }

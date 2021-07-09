@@ -25,15 +25,7 @@ public class VolumeTradedWithEntityMTDExtractorTest extends AbstractSparkUnitTes
     @Test
     public void checkVolumeWhenAllTradesMatch() {
 
-        String filePath = getClass().getResource("volume-traded-1.json").getPath();
-        Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
-
-        VolumeTradedWithEntityMTDExtractor extractor = new VolumeTradedWithEntityMTDExtractor();
-        extractor.setSince("2018-06-01");
-
-        Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
-
-        Object result = meta.get(RfqMetadataFieldNames.volumeTradedMonthToDate);
+        Object result = extractData("volume-traded-1.json", "2018-06-01");
 
         assertEquals(1_350_000L, result);
     }
@@ -41,7 +33,13 @@ public class VolumeTradedWithEntityMTDExtractorTest extends AbstractSparkUnitTes
     @Test
     public void checkVolumeWhenNoTradesMatch() {
 
-        String filePath = getClass().getResource("volume-traded-1.json").getPath();
+        Object result = extractData("volume-traded-1.json","2018-07-01");
+
+        assertEquals(0L, result);
+    }
+
+    private Object extractData(String filename, String json) {
+        String filePath = getClass().getResource(filename).getPath();
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
         //all test trade data are for 2018 so this will cause no matches
@@ -50,9 +48,6 @@ public class VolumeTradedWithEntityMTDExtractorTest extends AbstractSparkUnitTes
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        Object result = meta.get(RfqMetadataFieldNames.volumeTradedMonthToDate);
-
-        assertEquals(0L, result);
+        return meta.get(RfqMetadataFieldNames.volumeTradedMonthToDate);
     }
-
 }

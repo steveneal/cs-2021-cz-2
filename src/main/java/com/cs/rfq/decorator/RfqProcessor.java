@@ -6,7 +6,6 @@ import com.cs.rfq.decorator.publishers.MetadataPublisher;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
-import org.apache.avro.data.Json;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -45,9 +44,9 @@ public class RfqProcessor {
 
         extractors.add(new TotalTradesWithEntityExtractor());
         extractors.add(new VolumeTradedWithEntityYTDExtractor());
+        extractors.add(new VolumeTradedWithEntityMTDExtractor());
+        extractors.add(new VolumeTradedWithEntityWTDExtractor());
         extractors.add(new LiquidityExtractor());
-        //extractors.add(new VolumeTradedWithEntityMTDExtractor());
-        //extractors.add(new VolumeTradedWithEntityWTDExtractor());
     }
 
     public void startSocketListener() throws InterruptedException {
@@ -83,6 +82,5 @@ public class RfqProcessor {
         metadata.put(RfqMetadataFieldNames.rfqId, rfq.getId());
         // Publish the metadata
         System.out.println(gson.toJson(metadata));
-
     }
 }

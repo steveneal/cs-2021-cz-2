@@ -24,15 +24,7 @@ public class VolumeTradedByLegalEntityYTDExtractorTest extends AbstractSparkUnit
     @Test
     public void checkVolumeWhenLegalEntityMatch() {
 
-        String filePath = getClass().getResource("volume-traded-by-legal-entity.json").getPath();
-        Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
-
-        VolumeTradedByLegalEntityYTDExtractor extractor = new VolumeTradedByLegalEntityYTDExtractor();
-        extractor.setSince("2018-01-01");
-
-        Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
-
-        Object result = meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityYearToDate);
+        Object result = extractData("volume-traded-by-legal-entity.json", "2018-01-01");
 
         assertEquals(400_000L, result);
     }
@@ -40,18 +32,20 @@ public class VolumeTradedByLegalEntityYTDExtractorTest extends AbstractSparkUnit
     @Test
     public void checkVolumeWhenNoLegalEntityMatch() {
 
-        String filePath = getClass().getResource("volume-traded-1.json").getPath();
-        Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
-
-        //all test trade data are for 2018 so this will cause no matches
-        VolumeTradedByLegalEntityYTDExtractor extractor = new VolumeTradedByLegalEntityYTDExtractor();
-        extractor.setSince("2019-01-01");
-
-        Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
-
-        Object result = meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityYearToDate);
+        Object result = extractData("volume-traded-1.json", "2019-01-01");
 
         assertEquals(0L, result);
     }
 
+    private Object extractData(String filename, String since) {
+        String filePath = getClass().getResource(filename).getPath();
+        Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
+
+        VolumeTradedByLegalEntityYTDExtractor extractor = new VolumeTradedByLegalEntityYTDExtractor();
+        extractor.setSince(since);
+
+        Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
+
+        return meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityYearToDate);
+    }
 }
