@@ -1,5 +1,11 @@
 package com.cs.rfq.utils;
 
+import org.jline.reader.*;
+import org.jline.reader.impl.DefaultParser;
+import org.jline.reader.impl.history.DefaultHistory;
+import org.jline.terminal.Terminal;
+import org.jline.terminal.TerminalBuilder;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -74,22 +80,29 @@ public class ChatterboxServer {
     private static Thread send(final Socket socket) {
         return new Thread(() -> {
             try {
-                BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-                PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-                do {
-                    //naive polling of System.in to check for input and allow thread to be interrupted
-                    if (System.in.available() > 0) {
-                        String line = in.readLine();
-                        out.println(line);
-                        out.flush();
-                        log("sent", line);
-                    }  else {
-                        Thread.sleep(500);
-                    }
-                } while (true);
+                TerminalBuilder builder = TerminalBuilder.builder();
+                builder = builder.system(true);
+                Terminal terminal = builder.build();
+                DefaultParser p = new DefaultParser();
+                p.setEofOnUnclosedBracket(null);
+                LineReader reader = LineReaderBuilder.builder()
+                        .terminal(terminal)
+                        .parser(p)
+                        .history(new DefaultHistory())
+                        .build();
+                reader.unsetOpt(LineReader.Option.HISTORY_TIMESTAMPED);
 
-            } catch (InterruptedException e) {
-                log("connection closed by server");
+                PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+                String line = null;
+                while (true) {
+                    line = reader.readLine("", "", (MaskingCallback) null, null);
+                    line = line.trim();
+                    out.println(line);
+                    out.flush();
+                    log("sent", line);
+                }
+            } catch (EndOfFileException e) {
+               log("connection closed by server");
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -1,0 +1,1 @@
+"C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.1.3\plugins\maven\lib\maven3\bin\mvn.cmd" exec:java -Dexec.mainClass="com.cs.rfq.utils.ChatterboxServer"
