@@ -10,6 +10,7 @@ public abstract class VolumeTradedByBase implements RfqMetadataExtractor {
     protected String until;
 
     public VolumeTradedByBase() {
+
         this.until = dateUtil.actualDate();
     }
 

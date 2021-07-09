@@ -7,6 +7,7 @@ import org.apache.spark.sql.Row;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.ParseException;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -21,29 +22,32 @@ public class VolumeTradedByLegalEntityMTDExtractorTest extends AbstractSparkUnit
         rfq.setEntityId(5561279226039690842L);
     }
 
+    //TODO change the actual name of the test
     @Test
-    public void checkVolumeWhenAllTradesMatch() {
+    public void checkVolumeWhenAllTradesMatch() throws ParseException {
 
         Object result = extractData("volume-traded-by-legal-entity.json", "2018-06-01");
-
-        assertEquals(400_000L, result);
+        // Is the sum of the first three rows that have this:
+        // 'EntityId':5561279226039690842, 'SecurityID':'AT0000A0VRQ6'
+        assertEquals(600_000L, result);
     }
 
     @Test
-    public void checkVolumeWhenNoTradesMatch() {
+    public void checkVolumeWhenNoTradesMatch() throws ParseException {
 
         Object result = extractData("volume-traded-1.json", "2018-07-01");
 
         assertEquals(0L, result);
     }
 
-    private Object extractData(String filename, String since) {
+    private Object extractData(String filename, String until) throws ParseException {
         String filePath = getClass().getResource(filename).getPath();
 
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
-        VolumeTradedByLegalEntityMTDExtractor extractor = new VolumeTradedByLegalEntityMTDExtractor();
-        extractor.setSince(since);
+        VolumeTradedByLegalEntityMTDExtractor extractor = new VolumeTradedByLegalEntityMTDExtractor(until);
+        //extractor.setSince(since);
+        //extractor.setUntil(until);
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 

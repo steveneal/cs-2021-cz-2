@@ -3,6 +3,7 @@ package com.cs.rfq.decorator.extractors;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class XToDate {
 
@@ -27,4 +28,11 @@ public class XToDate {
         LocalDate now = LocalDate.now();
         return now.getYear() + "-" + df.format(now.getMonthValue()) + "-" + df.format(now.getDayOfMonth());
     }
+
+    public String untilDate(String until, int amount_days){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate since = LocalDate.parse(until, formatter).minusDays(amount_days);
+       return since.getYear() + "-" + df.format(since.getMonthValue()) + "-" + df.format(since.getDayOfMonth());
+    }
+
 }
