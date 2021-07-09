@@ -37,9 +37,10 @@ public class RfqProcessor {
 
         // Load the trade data
         trades = new TradeDataLoader().loadTrades(session, getClass().getResource("trades.json").getPath());
-
+        
         extractors.add(new TotalTradesWithEntityExtractor());
         extractors.add(new VolumeTradedWithEntityYTDExtractor());
+        extractors.add(new LiquidityExtractor());
         //extractors.add(new VolumeTradedWithEntityMTDExtractor());
         //extractors.add(new VolumeTradedWithEntityWTDExtractor());
     }
