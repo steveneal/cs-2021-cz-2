@@ -58,7 +58,7 @@ public class RfqProcessor {
             try {
                 return Rfq.fromJson(x);
             } catch (JsonParseException e) {
-                log.warn("Unable to parse json for incoming RFQ: \n" + e.getMessage());
+                log.warn("Unable to parse json for RFQ: \n" + e.getMessage());
                 return null;
             }
         }).filter(x -> x != null);
@@ -80,12 +80,7 @@ public class RfqProcessor {
             metadata.putAll(rfqMetadataExtractor.extractMetaData(rfq, session, trades));
         }
         metadata.put(RfqMetadataFieldNames.rfqId, rfq.getId());
-
         // Publish the metadata
-        try {
-            System.out.println(gson.toJson(metadata));
-        } catch (JsonParseException e) {
-            log.error("Cannot parse metadata output to json for rfq id: " + rfq.getId());
-        }
+        System.out.println(gson.toJson(metadata));
     }
 }
