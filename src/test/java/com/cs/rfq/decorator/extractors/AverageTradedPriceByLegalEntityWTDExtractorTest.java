@@ -27,7 +27,7 @@ public class AverageTradedPriceByLegalEntityWTDExtractorTest extends AbstractSpa
 
         Object result = extractData("2021-07-08");
 
-        assertEquals(140.920, result);
+        assertEquals(145.77, result);
     }
 
     @Test
