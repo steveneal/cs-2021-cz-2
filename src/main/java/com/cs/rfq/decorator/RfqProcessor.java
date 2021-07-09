@@ -36,9 +36,8 @@ public class RfqProcessor {
         this.streamingContext = streamingContext;
 
         // Load the trade data
-        trades = new TradeDataLoader().loadTrades(session, "trades.json");
+        trades = new TradeDataLoader().loadTrades(session, getClass().getResource("trades.json").getPath());
 
-        //TODO: take a close look at how these two extractors are implemented
         extractors.add(new TotalTradesWithEntityExtractor());
         extractors.add(new VolumeTradedWithEntityYTDExtractor());
         //extractors.add(new VolumeTradedWithEntityMTDExtractor());
