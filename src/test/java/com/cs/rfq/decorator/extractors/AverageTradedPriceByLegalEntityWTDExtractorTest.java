@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class VolumeTradedWithEntityYTDExtractorTest extends AbstractSparkUnitTest {
+public class AverageTradedPriceByLegalEntityWTDExtractorTest extends AbstractSparkUnitTest {
 
     private Rfq rfq;
 
@@ -27,7 +27,7 @@ public class VolumeTradedWithEntityYTDExtractorTest extends AbstractSparkUnitTes
 
         Object result = extractData("2018-01-01");
 
-        assertEquals(1_350_000L, result);
+        assertEquals(132.320, result);
     }
 
     @Test
@@ -42,12 +42,12 @@ public class VolumeTradedWithEntityYTDExtractorTest extends AbstractSparkUnitTes
         String filePath = getClass().getResource("volume-traded-1.json").getPath();
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
-        VolumeTradedWithEntityYTDExtractor extractor = new VolumeTradedWithEntityYTDExtractor();
+        AverageTradedPriceByLegalEntityWTDExtractor extractor = new AverageTradedPriceByLegalEntityWTDExtractor();
         extractor.setSince(since);
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        return meta.get(RfqMetadataFieldNames.volumeTradedYearToDate);
+        return meta.get(RfqMetadataFieldNames.averageTradedPriceByLegalEntityWeektoDate);
     }
 
 }

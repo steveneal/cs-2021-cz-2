@@ -3,17 +3,18 @@ package com.cs.rfq.decorator.extractors;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VolumeTradedWithEntityYTDExtractor extends VolumeTradedWithEntityExtractor {
+public class VolumeTradedWithEntityMTDExtractor extends VolumeTradedWithEntityExtractor {
 
-    public VolumeTradedWithEntityYTDExtractor() {
-        this.since = dateUtil.getLastYearToDate();
+    public VolumeTradedWithEntityMTDExtractor() {
+        this.since = dateUtil.getLastMonthToDate();
     }
 
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();
-        results.put(RfqMetadataFieldNames.volumeTradedYearToDate, volume);
+        results.put(RfqMetadataFieldNames.volumeTradedMonthToDate, volume);
         return results;
     }
+
 
 }

@@ -1,18 +1,20 @@
 package com.cs.rfq.decorator.extractors;
 
+import org.joda.time.DateTime;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class VolumeTradedWithEntityYTDExtractor extends VolumeTradedWithEntityExtractor {
+public class VolumeTradedByLegalEntityYTDExtractor extends VolumeTradedByLegalEntityExtractor {
 
-    public VolumeTradedWithEntityYTDExtractor() {
+    public VolumeTradedByLegalEntityYTDExtractor() {
         this.since = dateUtil.getLastYearToDate();
     }
 
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();
-        results.put(RfqMetadataFieldNames.volumeTradedYearToDate, volume);
+        results.put(RfqMetadataFieldNames.volumeTradedByLegalEntityYearToDate, volume);
         return results;
     }
 
