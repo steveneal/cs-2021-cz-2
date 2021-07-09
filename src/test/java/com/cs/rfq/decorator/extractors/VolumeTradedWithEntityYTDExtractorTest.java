@@ -25,9 +25,9 @@ public class VolumeTradedWithEntityYTDExtractorTest extends AbstractSparkUnitTes
     @Test
     public void checkVolumeWhenAllTradesMatch() {
 
-        Object result = extractData("2018-01-01");
+        Object result = extractData("2021-07-08");
 
-        assertEquals(1_350_000L, result);
+        assertEquals(950_000L, result);
     }
 
     @Test
@@ -38,12 +38,11 @@ public class VolumeTradedWithEntityYTDExtractorTest extends AbstractSparkUnitTes
         assertEquals(0L, result);
     }
 
-    private Object extractData(String since) {
-        String filePath = getClass().getResource("volume-traded-1.json").getPath();
+    private Object extractData(String until) {
+        String filePath = getClass().getResource("volume-traded-with-entity.json").getPath();
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
-        VolumeTradedWithEntityYTDExtractor extractor = new VolumeTradedWithEntityYTDExtractor();
-        extractor.setSince(since);
+        VolumeTradedWithEntityYTDExtractor extractor = new VolumeTradedWithEntityYTDExtractor(until);
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 

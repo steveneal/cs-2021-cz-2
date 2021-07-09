@@ -10,7 +10,13 @@ import java.util.Map;
 public class VolumeTradedWithEntityWTDExtractor extends VolumeTradedWithEntityExtractor {
 
     public VolumeTradedWithEntityWTDExtractor() {
+        this.until = dateUtil.actualDate();
         this.since = dateUtil.getLastWeekToDate();
+    }
+
+    public VolumeTradedWithEntityWTDExtractor(String until) {
+        this.until = until;
+        this.since = dateUtil.untilDate(until, 7);
     }
 
     @Override

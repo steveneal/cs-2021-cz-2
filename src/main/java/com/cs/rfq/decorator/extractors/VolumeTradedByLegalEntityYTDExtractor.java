@@ -8,9 +8,15 @@ import java.util.Map;
 public class VolumeTradedByLegalEntityYTDExtractor extends VolumeTradedByLegalEntityExtractor {
 
     public VolumeTradedByLegalEntityYTDExtractor() {
+        this.until = dateUtil.actualDate();
         this.since = dateUtil.getLastYearToDate();
     }
 
+    public VolumeTradedByLegalEntityYTDExtractor(String until) {
+        this.until = until;
+
+        this.since = dateUtil.untilDate(until, 365);
+    }
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();

@@ -6,7 +6,13 @@ import java.util.Map;
 public class AverageTradedPriceByLegalEntityWTDExtractor extends AverageTradedPriceByLegalEntityExtractor {
 
     public AverageTradedPriceByLegalEntityWTDExtractor() {
+        this.until = dateUtil.actualDate();
         this.since = dateUtil.getLastWeekToDate();
+    }
+
+    public AverageTradedPriceByLegalEntityWTDExtractor(String until) {
+        this.until = until;
+        this.since = dateUtil.untilDate(until, 7);
     }
 
     @Override

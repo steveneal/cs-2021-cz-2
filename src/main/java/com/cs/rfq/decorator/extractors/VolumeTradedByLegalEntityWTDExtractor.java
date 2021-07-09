@@ -6,7 +6,13 @@ import java.util.Map;
 public class VolumeTradedByLegalEntityWTDExtractor extends VolumeTradedByLegalEntityExtractor {
 
     public VolumeTradedByLegalEntityWTDExtractor() {
+        this.until = dateUtil.actualDate();
         this.since = dateUtil.getLastWeekToDate();
+    }
+
+    public VolumeTradedByLegalEntityWTDExtractor(String until) {
+        this.until = until;
+        this.since = dateUtil.untilDate(until, 7);
     }
 
     @Override

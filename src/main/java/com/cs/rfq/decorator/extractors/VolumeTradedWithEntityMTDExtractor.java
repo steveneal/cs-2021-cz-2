@@ -6,7 +6,14 @@ import java.util.Map;
 public class VolumeTradedWithEntityMTDExtractor extends VolumeTradedWithEntityExtractor {
 
     public VolumeTradedWithEntityMTDExtractor() {
+        this.until = dateUtil.actualDate();
         this.since = dateUtil.getLastMonthToDate();
+    }
+
+
+    public VolumeTradedWithEntityMTDExtractor(String until) {
+        this.until = until;
+        this.since = dateUtil.untilDate(until, 30);
     }
 
     @Override
