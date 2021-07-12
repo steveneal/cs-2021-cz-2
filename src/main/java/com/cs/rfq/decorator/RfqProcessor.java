@@ -23,7 +23,7 @@ public class RfqProcessor {
 
     private final static Logger log = LoggerFactory.getLogger(RfqProcessor.class);
 
-    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private final MetadataPublisher publisher;
 
     private final SparkSession session;
 
@@ -33,8 +33,6 @@ public class RfqProcessor {
 
     private final List<RfqMetadataExtractor> extractors = new ArrayList<>();
 
-    private final MetadataPublisher publisher = new MetadataJsonLogPublisher();
-
     public RfqProcessor(SparkSession session, JavaStreamingContext streamingContext) {
         this.session = session;
         this.streamingContext = streamingContext;
@@ -42,11 +40,15 @@ public class RfqProcessor {
         // Load the trade data
         trades = new TradeDataLoader().loadTrades(session, getClass().getResource("trades.json").getPath());
 
+        // Register extractors
         extractors.add(new TotalTradesWithEntityExtractor());
         extractors.add(new VolumeTradedWithEntityYTDExtractor());
         extractors.add(new VolumeTradedWithEntityMTDExtractor());
         extractors.add(new VolumeTradedWithEntityWTDExtractor());
         extractors.add(new LiquidityExtractor());
+
+        // Instantiate publisher
+        publisher = new MetadataJsonLogPublisher();
     }
 
     public void startSocketListener() throws InterruptedException {
@@ -82,6 +84,6 @@ public class RfqProcessor {
         metadata.put(RfqMetadataFieldNames.rfqId, rfq.getId());
 
         // Publish the metadata
-        System.out.println(gson.toJson(metadata));
+        publisher.publishMetadata(metadata);
     }
 }
