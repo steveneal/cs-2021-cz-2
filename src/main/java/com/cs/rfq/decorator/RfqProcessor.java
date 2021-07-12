@@ -1,44 +1,49 @@
 package com.cs.rfq.decorator;
 
 import com.cs.rfq.decorator.extractors.*;
+import com.cs.rfq.decorator.publishers.KafkaPublisher;
 import com.cs.rfq.decorator.publishers.MetadataJsonLogPublisher;
 import com.cs.rfq.decorator.publishers.MetadataPublisher;
+import com.cs.rfq.decorator.stream.creators.KafkaStreamCreator;
+import com.cs.rfq.decorator.stream.creators.SocketStreamCreator;
+import com.cs.rfq.decorator.stream.creators.StreamCreator;
 import com.google.gson.JsonParseException;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
-import org.apache.spark.streaming.kafka010.ConsumerStrategies;
-import org.apache.spark.streaming.kafka010.KafkaUtils;
-import org.apache.spark.streaming.kafka010.LocationStrategies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
-import java.util.function.Supplier;
 
 public class RfqProcessor {
 
     private final static Logger log = LoggerFactory.getLogger(RfqProcessor.class);
 
-    private final MetadataPublisher publisher;
+    private final Set<MetadataPublisher> publishers = new HashSet<>();
 
     private final SparkSession session;
 
     private final JavaStreamingContext streamingContext;
 
-    private final Map<String, Object> configuration = new HashMap<>();
+    private final Map<String, String> configuration;
+
+    private final boolean isKafkaEnabled;
 
     private Dataset<Row> trades;
 
     private final List<RfqMetadataExtractor> extractors = new ArrayList<>();
 
-    public RfqProcessor(SparkSession session, JavaStreamingContext streamingContext) {
+    public RfqProcessor(SparkSession session, JavaStreamingContext streamingContext, Map<String, String> configuration
+    ) {
         this.session = session;
         this.streamingContext = streamingContext;
+        this.configuration = configuration == null ? new HashMap<>() : configuration;
+
+        // Is  Kafka enabled?
+        isKafkaEnabled = Boolean.toString(true).equalsIgnoreCase(this.configuration.get(Options.KAFKA_ENABLED));
 
         // Load the trade data
         trades = new TradeDataLoader().loadTrades(session, getClass().getResource("trades.json").getPath());
@@ -50,24 +55,24 @@ public class RfqProcessor {
         extractors.add(new VolumeTradedWithEntityWTDExtractor());
         extractors.add(new LiquidityExtractor());
 
-        // Instantiate publisher
-        publisher = new MetadataJsonLogPublisher();
+        // Register publishers
+        publishers.add(new MetadataJsonLogPublisher());
+
+        if (isKafkaEnabled) {
+            publishers.add(new KafkaPublisher(configuration));
+        }
     }
 
-    public void configure(String key, Object value) {
-        configuration.put(key, value);
-    }
-
-    public void start(Supplier<JavaDStream<String>> streamSupplier) throws InterruptedException {
+    public void start(StreamCreator streamCreator) throws InterruptedException {
         // Stream data from the input socket on localhost:9000
-        JavaDStream<String> elements = streamSupplier.get();
+        JavaDStream<String> elements = streamCreator.create(streamingContext, configuration);
 
         // Convert each incoming line to a Rfq object and call processRfq method on it
         JavaDStream<Rfq> rfqs = elements.map(x -> {
             try {
                 return Rfq.fromJson(x);
             } catch (JsonParseException e) {
-                log.warn("Unable to parse json for RFQ: \n" + e.getMessage());
+                log.warn("Unable to parse json for RFQ", e);
                 return null;
             }
         }).filter(x -> x != null);
@@ -75,28 +80,16 @@ public class RfqProcessor {
 
         // Start the streaming context and wait for termination
         streamingContext.start();
+        System.out.println("RFQ Decorator is running...");
         streamingContext.awaitTermination();
     }
 
-    public JavaDStream<String> createSocketStream() {
-        return streamingContext.socketTextStream(
-                (String) configuration.getOrDefault("host", "localhost"),
-                (Integer) configuration.getOrDefault("port", 9000));
-    }
-
-    public JavaDStream<String> createKafkaStream() {
-        configuration.putIfAbsent("bootstrap.servers", "localhost:9092");
-        configuration.putIfAbsent("key.deserializer", StringDeserializer.class);
-        configuration.putIfAbsent("value.deserializer", StringDeserializer.class);
-        configuration.putIfAbsent("group.id", "rfq");
-        configuration.putIfAbsent("auto.offset.reset", "latest");
-        configuration.putIfAbsent("enable.auto.commit", false);
-
-        JavaDStream<ConsumerRecord<String, String>> stream = KafkaUtils.createDirectStream(
-                streamingContext,
-                LocationStrategies.PreferConsistent(),
-                ConsumerStrategies.<String, String>Subscribe(Arrays.asList("rfq"), configuration));
-        return stream.map(record -> record.value());
+    public void start() throws InterruptedException {
+        if (isKafkaEnabled) {
+            start(new KafkaStreamCreator());
+        } else {
+            start(new SocketStreamCreator());
+        }
     }
 
     public void processRfq(Rfq rfq) {
@@ -112,6 +105,14 @@ public class RfqProcessor {
         metadata.put(RfqMetadataFieldNames.rfqId, rfq.getId());
 
         // Publish the metadata
-        publisher.publishMetadata(metadata);
+        for (MetadataPublisher publisher : publishers) {
+            publisher.publishMetadata(metadata);
+        }
+    }
+
+    public void stop() {
+        for (MetadataPublisher publisher : publishers) {
+            publisher.stop();
+        }
     }
 }
