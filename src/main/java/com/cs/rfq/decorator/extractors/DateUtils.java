@@ -30,18 +30,24 @@ public class DateUtils {
     }
 
     public String untilDateForPastWeek(String until){
+        if (until == null || until.isEmpty())
+            return null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate since =  LocalDate.parse(until, formatter).minusWeeks(1);
         return since.getYear() + "-" + df.format(since.getMonthValue()) + "-" + df.format(since.getDayOfMonth());
     }
 
     public String untilDateForPastMonth(String until){
+        if (until == null || until.isEmpty())
+            return null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate since =  LocalDate.parse(until, formatter).minusMonths(1);
         return since.getYear() + "-" + df.format(since.getMonthValue()) + "-" + df.format(since.getDayOfMonth());
     }
 
     public String untilDateForPastYear(String until){
+        if (until == null || until.isEmpty())
+            return null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate since =  LocalDate.parse(until, formatter).minusYears(1);
         return since.getYear() + "-" + df.format(since.getMonthValue()) + "-" + df.format(since.getDayOfMonth());
