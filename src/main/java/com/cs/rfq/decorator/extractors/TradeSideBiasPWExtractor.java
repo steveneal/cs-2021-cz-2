@@ -18,7 +18,7 @@ public class TradeSideBiasPWExtractor extends TradeSideBiasExtractor {
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();
-        results.put(RfqMetadataFieldNames.tradesWithEntityPastWeek, volume);
+        results.put(RfqMetadataFieldNames.tradeSideBiasPastWeek, volume);
         return results;
     }
 }
