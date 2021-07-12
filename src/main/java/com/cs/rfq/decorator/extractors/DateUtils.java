@@ -10,17 +10,17 @@ public class DateUtils {
     private DecimalFormat df = new DecimalFormat("00");
 
     public String lastYear() {
-        LocalDate now = LocalDate.now().minusDays(365);
+        LocalDate now = LocalDate.now().minusYears(1);
         return now.getYear() + "-" + df.format(now.getMonthValue()) + "-" + df.format(now.getDayOfMonth());
     }
 
     public String lastMonth() {
-        LocalDate now = LocalDate.now().minusDays(30);
+        LocalDate now = LocalDate.now().minusMonths(1);
         return now.getYear() + "-" + df.format(now.getMonthValue()) + "-" + df.format(now.getDayOfMonth());
     }
 
     public String lastWeek() {
-        LocalDate now = LocalDate.now().minusDays(7);
+        LocalDate now = LocalDate.now().minusWeeks(1);
         return now.getYear() + "-" + df.format(now.getMonthValue()) + "-" + df.format(now.getDayOfMonth());
     }
 
@@ -29,10 +29,22 @@ public class DateUtils {
         return now.getYear() + "-" + df.format(now.getMonthValue()) + "-" + df.format(now.getDayOfMonth());
     }
 
-    public String untilDate(String until, int amount_days){
+    public String untilDateForPastWeek(String until){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate since = LocalDate.parse(until, formatter).minusDays(amount_days);
-       return since.getYear() + "-" + df.format(since.getMonthValue()) + "-" + df.format(since.getDayOfMonth());
+        LocalDate since =  LocalDate.parse(until, formatter).minusWeeks(1);
+        return since.getYear() + "-" + df.format(since.getMonthValue()) + "-" + df.format(since.getDayOfMonth());
+    }
+
+    public String untilDateForPastMonth(String until){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate since =  LocalDate.parse(until, formatter).minusMonths(1);
+        return since.getYear() + "-" + df.format(since.getMonthValue()) + "-" + df.format(since.getDayOfMonth());
+    }
+
+    public String untilDateForPastYear(String until){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate since =  LocalDate.parse(until, formatter).minusYears(1);
+        return since.getYear() + "-" + df.format(since.getMonthValue()) + "-" + df.format(since.getDayOfMonth());
     }
 
 }

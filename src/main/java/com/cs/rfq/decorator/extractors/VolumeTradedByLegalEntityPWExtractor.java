@@ -12,7 +12,7 @@ public class VolumeTradedByLegalEntityPWExtractor extends VolumeTradedByLegalEnt
 
     public VolumeTradedByLegalEntityPWExtractor(String until) {
         this.until = until;
-        this.since = dateUtil.untilDate(until, 7);
+        this.since = dateUtil.untilDateForPastWeek(until);
     }
 
     @Override

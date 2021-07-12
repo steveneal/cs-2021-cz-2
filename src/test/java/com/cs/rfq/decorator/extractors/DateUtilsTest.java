@@ -13,25 +13,33 @@ public class DateUtilsTest {
     }
 
     @Test
-    public void checkUntilDateForAWeek() {
+    public void checkUntilDateForPastWeek() {
 
-        Object result = dateUtils.untilDate("2021-05-13", 7);
+        Object result = dateUtils.untilDateForPastWeek("2021-05-13");
 
         assertEquals("2021-05-06", result);
     }
 
     @Test
-    public void checkUntilDateForAMonth() {
+    public void checkUntilDateForPastMonth() {
 
-        Object result = dateUtils.untilDate("2021-05-13", 30);
+        Object result = dateUtils.untilDateForPastMonth("2021-05-13");
 
         assertEquals("2021-04-13", result);
     }
 
     @Test
-    public void checkUntilDateForAYear() {
+    public void checkUntilDateForPastMonthFebruary() {
 
-        Object result = dateUtils.untilDate("2021-05-13", 365);
+        Object result = dateUtils.untilDateForPastMonth("2021-02-13");
+
+        assertEquals("2021-01-13", result);
+    }
+
+    @Test
+    public void checkUntilDateForPastYear() {
+
+        Object result = dateUtils.untilDateForPastYear("2021-05-13");
 
         assertEquals("2020-05-13", result);
     }

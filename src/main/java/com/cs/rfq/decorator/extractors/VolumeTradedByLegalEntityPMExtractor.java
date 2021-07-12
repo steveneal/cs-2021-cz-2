@@ -13,7 +13,7 @@ public class VolumeTradedByLegalEntityPMExtractor extends VolumeTradedByLegalEnt
     public VolumeTradedByLegalEntityPMExtractor(String until) {
         this.until = until;
 
-        this.since = dateUtil.untilDate(until, 30);
+        this.since = dateUtil.untilDateForPastMonth(until);
     }
 
     @Override

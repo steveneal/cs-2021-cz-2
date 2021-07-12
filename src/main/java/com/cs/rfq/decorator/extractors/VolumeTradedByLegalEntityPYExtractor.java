@@ -15,7 +15,7 @@ public class VolumeTradedByLegalEntityPYExtractor extends VolumeTradedByLegalEnt
     public VolumeTradedByLegalEntityPYExtractor(String until) {
         this.until = until;
 
-        this.since = dateUtil.untilDate(until, 365);
+        this.since = dateUtil.untilDateForPastYear(until);
     }
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {

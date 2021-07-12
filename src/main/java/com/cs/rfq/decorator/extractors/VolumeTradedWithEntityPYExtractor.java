@@ -13,7 +13,7 @@ public class VolumeTradedWithEntityPYExtractor extends VolumeTradedWithEntityExt
     public VolumeTradedWithEntityPYExtractor(String until) {
         this.until = until;
 
-        this.since = dateUtil.untilDate(until, 365);
+        this.since = dateUtil.untilDateForPastYear(until);
     }
 
     @Override

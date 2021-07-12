@@ -16,7 +16,7 @@ public class VolumeTradedWithEntityPWExtractor extends VolumeTradedWithEntityExt
 
     public VolumeTradedWithEntityPWExtractor(String until) {
         this.until = until;
-        this.since = dateUtil.untilDate(until, 7);
+        this.since = dateUtil.untilDateForPastWeek(until);
     }
 
     @Override

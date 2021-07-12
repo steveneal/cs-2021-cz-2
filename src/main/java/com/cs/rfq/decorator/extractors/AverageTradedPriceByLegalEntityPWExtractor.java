@@ -12,7 +12,7 @@ public class AverageTradedPriceByLegalEntityPWExtractor extends AverageTradedPri
 
     public AverageTradedPriceByLegalEntityPWExtractor(String until) {
         this.until = until;
-        this.since = dateUtil.untilDate(until, 7);
+        this.since = dateUtil.untilDateForPastWeek(until);
     }
 
     @Override
