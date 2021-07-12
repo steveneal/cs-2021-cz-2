@@ -26,5 +26,5 @@ Open a command prompt and issue the following commands to run the zookeeper comp
 Open another command prompt, and issue the following commands to run the kafka server:
     
     cd PATH_TO_RFQ_DECORATOR_PROJECT/kafka
-    bin\windows\>bin\windows\kafka-server-start.bat config\server.properties
+    bin\windows\kafka-server-start.bat config\server.properties
     
