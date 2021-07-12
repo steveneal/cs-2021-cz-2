@@ -19,7 +19,7 @@ public class RfqProcessorTest extends AbstractSparkUnitTest {
 
     @Before
     public void setupRfqProcessor() {
-        processor = new RfqProcessor(session, null);
+        processor = new RfqProcessor(session, null, null);
 
         out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
