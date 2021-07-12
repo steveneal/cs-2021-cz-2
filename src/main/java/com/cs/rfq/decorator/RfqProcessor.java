@@ -1,10 +1,12 @@
 package com.cs.rfq.decorator;
 
 import com.cs.rfq.decorator.extractors.*;
+import com.cs.rfq.decorator.publishers.KafkaPublisher;
 import com.cs.rfq.decorator.publishers.MetadataJsonLogPublisher;
 import com.cs.rfq.decorator.publishers.MetadataPublisher;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.cs.rfq.decorator.stream.creators.KafkaStreamCreator;
+import com.cs.rfq.decorator.stream.creators.SocketStreamCreator;
+import com.cs.rfq.decorator.stream.creators.StreamCreator;
 import com.google.gson.JsonParseException;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -15,29 +17,34 @@ import org.mortbay.log.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RfqProcessor {
 
     private final static Logger log = LoggerFactory.getLogger(RfqProcessor.class);
 
-    private final MetadataPublisher publisher;
+    private final Set<MetadataPublisher> publishers = new HashSet<>();
 
     private final SparkSession session;
 
     private final JavaStreamingContext streamingContext;
 
+    private final Map<String, String> configuration;
+
+    private final boolean isKafkaEnabled;
+
     private Dataset<Row> trades;
 
     private final List<RfqMetadataExtractor> extractors = new ArrayList<>();
 
-
-    public RfqProcessor(SparkSession session, JavaStreamingContext streamingContext) {
+    public RfqProcessor(SparkSession session, JavaStreamingContext streamingContext, Map<String, String> configuration
+    ) {
         this.session = session;
         this.streamingContext = streamingContext;
+        this.configuration = configuration == null ? new HashMap<>() : configuration;
+
+        // Is  Kafka enabled?
+        isKafkaEnabled = Boolean.toString(true).equalsIgnoreCase(this.configuration.get(Options.KAFKA_ENABLED));
 
         // Load the trade data
         trades = new TradeDataLoader().loadTrades(session, getClass().getResource("trades.json").getPath());
@@ -55,20 +62,24 @@ public class RfqProcessor {
         extractors.add(new TradeSideBiasPWExtractor());
         extractors.add(new LiquidityExtractor());
 
-        // Instantiate publisher
-        publisher = new MetadataJsonLogPublisher();
+        // Register publishers
+        publishers.add(new MetadataJsonLogPublisher());
+
+        if (isKafkaEnabled) {
+            publishers.add(new KafkaPublisher(configuration));
+        }
     }
 
-    public void startSocketListener() throws InterruptedException {
+    public void start(StreamCreator streamCreator) throws InterruptedException {
         // Stream data from the input socket on localhost:9000
-        JavaDStream<String> lines = streamingContext.socketTextStream("localhost", 9000);
+        JavaDStream<String> elements = streamCreator.create(streamingContext, configuration);
 
         // Convert each incoming line to a Rfq object and call processRfq method on it
-        JavaDStream<Rfq> rfqs = lines.map(x -> {
+        JavaDStream<Rfq> rfqs = elements.map(x -> {
             try {
                 return Rfq.fromJson(x);
             } catch (JsonParseException e) {
-                log.warn("Unable to parse json for RFQ: \n" + e.getMessage());
+                log.warn("Unable to parse json for RFQ", e);
                 return null;
             }
         }).filter(x -> x != null);
@@ -76,7 +87,16 @@ public class RfqProcessor {
 
         // Start the streaming context and wait for termination
         streamingContext.start();
+        System.out.println("RFQ Decorator is running...");
         streamingContext.awaitTermination();
+    }
+
+    public void start() throws InterruptedException {
+        if (isKafkaEnabled) {
+            start(new KafkaStreamCreator());
+        } else {
+            start(new SocketStreamCreator());
+        }
     }
 
     public void processRfq(Rfq rfq) {
@@ -92,6 +112,14 @@ public class RfqProcessor {
         metadata.put(RfqMetadataFieldNames.rfqId, rfq.getId());
 
         // Publish the metadata
-        publisher.publishMetadata(metadata);
+        for (MetadataPublisher publisher : publishers) {
+            publisher.publishMetadata(metadata);
+        }
+    }
+
+    public void stop() {
+        for (MetadataPublisher publisher : publishers) {
+            publisher.stop();
+        }
     }
 }
