@@ -37,7 +37,7 @@ public class TradeSideBiasPMExtractorTest extends AbstractSparkUnitTest {
 
         Object result = extractData("trade-side-bias-no-sell-trades.json", "2021-07-08");
         // catch exception
-        assertEquals(6.0, result);
+        assertEquals("Just buying", result);
     }
 
     @Test
@@ -45,14 +45,14 @@ public class TradeSideBiasPMExtractorTest extends AbstractSparkUnitTest {
 
         Object result = extractData("trade-side-bias-no-buy-trades.json", "2021-07-08");
         // catch exception
-        assertEquals(0L, result);
+        assertEquals("Just selling", result);
     }
 
     @Test
     public void checkRatioWhenNoTradesMatch() {
 
         Object result = extractData("trade-side-bias-no-trades.json", "2021-07-08");
-        assertEquals(0L, result);
+        assertEquals(-1, result);
     }
 
 
