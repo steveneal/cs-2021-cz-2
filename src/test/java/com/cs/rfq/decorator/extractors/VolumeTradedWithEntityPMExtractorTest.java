@@ -38,7 +38,7 @@ public class VolumeTradedWithEntityPMExtractorTest extends AbstractSparkUnitTest
         assertEquals(0L, result);
     }
 
-    private Object extractData( String until) {
+    private Object extractData(String until) {
         String filePath = getClass().getResource("volume-traded-with-entity.json").getPath();
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
@@ -47,6 +47,6 @@ public class VolumeTradedWithEntityPMExtractorTest extends AbstractSparkUnitTest
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        return meta.get(RfqMetadataFieldNames.volumeTradedMonthToDate);
+        return meta.get(RfqMetadataFieldNames.volumeTradedPastMonth);
     }
 }

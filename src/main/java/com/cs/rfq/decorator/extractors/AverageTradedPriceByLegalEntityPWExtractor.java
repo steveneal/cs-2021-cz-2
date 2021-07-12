@@ -18,7 +18,7 @@ public class AverageTradedPriceByLegalEntityPWExtractor extends AverageTradedPri
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();
-        results.put(RfqMetadataFieldNames.averageTradedPriceByLegalEntityWeektoDate, volume);
+        results.put(RfqMetadataFieldNames.averageTradedPriceByLegalEntityPastWeek, volume);
         return results;
     }
 }

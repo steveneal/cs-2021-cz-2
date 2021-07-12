@@ -3,15 +3,14 @@ package com.cs.rfq.decorator.extractors;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VolumeTradedWithEntityPMExtractor extends VolumeTradedWithEntityExtractor {
+public class TradeSideBiasPMExtractor extends TradeSideBiasExtractor {
 
-    public VolumeTradedWithEntityPMExtractor() {
+    public TradeSideBiasPMExtractor() {
         this.until = dateUtil.actualDate();
         this.since = dateUtil.lastMonth();
     }
 
-
-    public VolumeTradedWithEntityPMExtractor(String until) {
+    public TradeSideBiasPMExtractor(String until) {
         this.until = until;
         this.since = dateUtil.untilDateForPastMonth(until);
     }
@@ -19,9 +18,7 @@ public class VolumeTradedWithEntityPMExtractor extends VolumeTradedWithEntityExt
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();
-        results.put(RfqMetadataFieldNames.volumeTradedPastMonth, volume);
+        results.put(RfqMetadataFieldNames.tradeSideBiasPastMonth, volume);
         return results;
     }
-
-
 }

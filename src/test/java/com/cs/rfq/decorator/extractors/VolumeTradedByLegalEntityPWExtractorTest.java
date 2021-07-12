@@ -45,7 +45,7 @@ public class VolumeTradedByLegalEntityPWExtractorTest extends AbstractSparkUnitT
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        return meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityWeekToDate);
+        return meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityPastWeek);
     }
 
 }

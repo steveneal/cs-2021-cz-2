@@ -18,7 +18,7 @@ public class VolumeTradedByLegalEntityPWExtractor extends VolumeTradedByLegalEnt
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();
-        results.put(RfqMetadataFieldNames.volumeTradedByLegalEntityWeekToDate, volume);
+        results.put(RfqMetadataFieldNames.volumeTradedByLegalEntityPastWeek, volume);
         return results;
     }
 }

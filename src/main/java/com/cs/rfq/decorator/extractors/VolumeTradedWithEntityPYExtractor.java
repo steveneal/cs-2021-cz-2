@@ -19,7 +19,7 @@ public class VolumeTradedWithEntityPYExtractor extends VolumeTradedWithEntityExt
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();
-        results.put(RfqMetadataFieldNames.volumeTradedYearToDate, volume);
+        results.put(RfqMetadataFieldNames.volumeTradedPastYear, volume);
         return results;
     }
 

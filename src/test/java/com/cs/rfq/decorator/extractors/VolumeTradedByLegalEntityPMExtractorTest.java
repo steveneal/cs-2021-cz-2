@@ -7,7 +7,6 @@ import org.apache.spark.sql.Row;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.text.ParseException;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -24,7 +23,7 @@ public class VolumeTradedByLegalEntityPMExtractorTest extends AbstractSparkUnitT
 
     //TODO change the actual name of the test
     @Test
-    public void checkVolumeWhenAllTradesMatch() throws ParseException {
+    public void checkVolumeWhenAllTradesMatch() {
 
         Object result = extractData("2021-07-08");
         // Is the sum of the first three rows that have this:
@@ -33,14 +32,14 @@ public class VolumeTradedByLegalEntityPMExtractorTest extends AbstractSparkUnitT
     }
 
     @Test
-    public void checkVolumeWhenNoTradesMatch() throws ParseException {
+    public void checkVolumeWhenNoTradesMatch() {
 
         Object result = extractData( "2018-07-01");
 
         assertEquals(0L, result);
     }
 
-    private Object extractData( String until) throws ParseException {
+    private Object extractData( String until) {
         String filePath = getClass().getResource("volume-traded-by-legal-entity.json").getPath();
 
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
@@ -50,7 +49,7 @@ public class VolumeTradedByLegalEntityPMExtractorTest extends AbstractSparkUnitT
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        return meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityMonthToDate);
+        return meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityPastMonth);
     }
 
 }

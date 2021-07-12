@@ -46,7 +46,7 @@ public class AverageTradedPriceByLegalEntityPWExtractorTest extends AbstractSpar
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        return meta.get(RfqMetadataFieldNames.averageTradedPriceByLegalEntityWeektoDate);
+        return meta.get(RfqMetadataFieldNames.averageTradedPriceByLegalEntityPastWeek);
     }
 
 }
