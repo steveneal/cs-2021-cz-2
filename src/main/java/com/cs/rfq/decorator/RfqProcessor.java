@@ -3,12 +3,15 @@ package com.cs.rfq.decorator;
 import com.cs.rfq.decorator.extractors.*;
 import com.cs.rfq.decorator.publishers.MetadataJsonLogPublisher;
 import com.cs.rfq.decorator.publishers.MetadataPublisher;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
+import org.mortbay.log.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +24,8 @@ public class RfqProcessor {
 
     private final static Logger log = LoggerFactory.getLogger(RfqProcessor.class);
 
+    private final MetadataPublisher publisher;
+
     private final SparkSession session;
 
     private final JavaStreamingContext streamingContext;
@@ -29,7 +34,6 @@ public class RfqProcessor {
 
     private final List<RfqMetadataExtractor> extractors = new ArrayList<>();
 
-    private final MetadataPublisher publisher = new MetadataJsonLogPublisher();
 
     public RfqProcessor(SparkSession session, JavaStreamingContext streamingContext) {
         this.session = session;
@@ -38,6 +42,7 @@ public class RfqProcessor {
         // Load the trade data
         trades = new TradeDataLoader().loadTrades(session, getClass().getResource("trades.json").getPath());
 
+        // Register extractors
         extractors.add(new TotalTradesWithEntityExtractor());
         extractors.add(new VolumeTradedWithEntityPYExtractor());
         extractors.add(new VolumeTradedWithEntityPMExtractor());
@@ -48,6 +53,10 @@ public class RfqProcessor {
         extractors.add(new AverageTradedPriceByLegalEntityPWExtractor());
         extractors.add(new TradeSideBiasPMExtractor());
         extractors.add(new TradeSideBiasPWExtractor());
+        extractors.add(new LiquidityExtractor());
+
+        // Instantiate publisher
+        publisher = new MetadataJsonLogPublisher();
     }
 
     public void startSocketListener() throws InterruptedException {
@@ -76,14 +85,13 @@ public class RfqProcessor {
         // Create a blank map for the metadata to be collected
         Map<RfqMetadataFieldNames, Object> metadata = new HashMap<>();
 
-        //TODO: get metadata from each of the extractors
-        // Features to implement
+        // Get metadata from each of the extractors
         for (RfqMetadataExtractor rfqMetadataExtractor : extractors) {
             metadata.putAll(rfqMetadataExtractor.extractMetaData(rfq, session, trades));
         }
-        //TODO: publish the metadata
-        // Dummy
-        log.info(metadata.toString());
+        metadata.put(RfqMetadataFieldNames.rfqId, rfq.getId());
 
+        // Publish the metadata
+        publisher.publishMetadata(metadata);
     }
 }
