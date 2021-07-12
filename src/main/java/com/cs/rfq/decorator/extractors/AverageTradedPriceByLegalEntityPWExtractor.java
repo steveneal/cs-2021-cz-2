@@ -1,20 +1,16 @@
 package com.cs.rfq.decorator.extractors;
 
-import org.joda.time.DateTime;
-
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VolumeTradedWithEntityWTDExtractor extends VolumeTradedWithEntityExtractor {
+public class AverageTradedPriceByLegalEntityPWExtractor extends AverageTradedPriceByLegalEntityExtractor {
 
-    public VolumeTradedWithEntityWTDExtractor() {
+    public AverageTradedPriceByLegalEntityPWExtractor() {
         this.until = dateUtil.actualDate();
-        this.since = dateUtil.getLastWeekToDate();
+        this.since = dateUtil.lastWeek();
     }
 
-    public VolumeTradedWithEntityWTDExtractor(String until) {
+    public AverageTradedPriceByLegalEntityPWExtractor(String until) {
         this.until = until;
         this.since = dateUtil.untilDate(until, 7);
     }
@@ -22,7 +18,7 @@ public class VolumeTradedWithEntityWTDExtractor extends VolumeTradedWithEntityEx
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();
-        results.put(RfqMetadataFieldNames.volumeTradedWeekToDate, volume);
+        results.put(RfqMetadataFieldNames.averageTradedPriceByLegalEntityWeektoDate, volume);
         return results;
     }
 }

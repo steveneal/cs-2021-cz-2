@@ -9,7 +9,6 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
-import org.mortbay.log.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,13 +39,13 @@ public class RfqProcessor {
         trades = new TradeDataLoader().loadTrades(session, getClass().getResource("trades.json").getPath());
 
         extractors.add(new TotalTradesWithEntityExtractor());
-        extractors.add(new VolumeTradedWithEntityYTDExtractor());
-        extractors.add(new VolumeTradedWithEntityMTDExtractor());
-        extractors.add(new VolumeTradedWithEntityWTDExtractor());
-        extractors.add(new VolumeTradedByLegalEntityYTDExtractor());
-        extractors.add(new VolumeTradedByLegalEntityMTDExtractor());
-        extractors.add(new VolumeTradedByLegalEntityWTDExtractor());
-        extractors.add(new AverageTradedPriceByLegalEntityWTDExtractor());
+        extractors.add(new VolumeTradedWithEntityPYExtractor());
+        extractors.add(new VolumeTradedWithEntityPMExtractor());
+        extractors.add(new VolumeTradedWithEntityPWExtractor());
+        extractors.add(new VolumeTradedByLegalEntityPYExtractor());
+        extractors.add(new VolumeTradedByLegalEntityPMExtractor());
+        extractors.add(new VolumeTradedByLegalEntityPWExtractor());
+        extractors.add(new AverageTradedPriceByLegalEntityPWExtractor());
     }
 
     public void startSocketListener() throws InterruptedException {

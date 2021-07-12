@@ -11,18 +11,19 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class VolumeTradedByLegalEntityYTDExtractorTest extends AbstractSparkUnitTest {
+public class VolumeTradedWithEntityPYExtractorTest extends AbstractSparkUnitTest {
 
     private Rfq rfq;
 
     @Before
     public void setup() {
         rfq = new Rfq();
-        rfq.setEntityId(5561279226039690842L);
+        rfq.setEntityId(5561279226039690843L);
+        rfq.setIsin("AT0000A0VRQ6");
     }
 
     @Test
-    public void checkVolumeWhenLegalEntityMatch() {
+    public void checkVolumeWhenAllTradesMatch() {
 
         Object result = extractData("2021-07-08");
 
@@ -30,7 +31,7 @@ public class VolumeTradedByLegalEntityYTDExtractorTest extends AbstractSparkUnit
     }
 
     @Test
-    public void checkVolumeWhenNoLegalEntityMatch() {
+    public void checkVolumeWhenNoTradesMatch() {
 
         Object result = extractData("2019-01-01");
 
@@ -38,13 +39,14 @@ public class VolumeTradedByLegalEntityYTDExtractorTest extends AbstractSparkUnit
     }
 
     private Object extractData(String until) {
-        String filePath = getClass().getResource("volume-traded-by-legal-entity.json").getPath();
+        String filePath = getClass().getResource("volume-traded-with-entity.json").getPath();
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
-        VolumeTradedByLegalEntityYTDExtractor extractor = new VolumeTradedByLegalEntityYTDExtractor(until);
+        VolumeTradedWithEntityPYExtractor extractor = new VolumeTradedWithEntityPYExtractor(until);
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        return meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityYearToDate);
+        return meta.get(RfqMetadataFieldNames.volumeTradedYearToDate);
     }
+
 }

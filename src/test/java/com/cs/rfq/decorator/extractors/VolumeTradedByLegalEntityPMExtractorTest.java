@@ -12,7 +12,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class VolumeTradedByLegalEntityMTDExtractorTest extends AbstractSparkUnitTest {
+public class VolumeTradedByLegalEntityPMExtractorTest extends AbstractSparkUnitTest {
 
     private Rfq rfq;
 
@@ -45,7 +45,7 @@ public class VolumeTradedByLegalEntityMTDExtractorTest extends AbstractSparkUnit
 
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
-        VolumeTradedByLegalEntityMTDExtractor extractor = new VolumeTradedByLegalEntityMTDExtractor(until);
+        VolumeTradedByLegalEntityPMExtractor extractor = new VolumeTradedByLegalEntityPMExtractor(until);
 
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);

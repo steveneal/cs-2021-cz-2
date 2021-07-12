@@ -1,11 +1,10 @@
 package com.cs.rfq.decorator.extractors;
 
-import java.time.LocalDate;
 import java.util.Map;
 
 public abstract class VolumeTradedByBase implements RfqMetadataExtractor {
 
-    protected XToDate dateUtil = new XToDate();
+    protected DateUtils dateUtil = new DateUtils();
     protected String since;
     protected String until;
 

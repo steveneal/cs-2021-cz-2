@@ -3,14 +3,14 @@ package com.cs.rfq.decorator.extractors;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VolumeTradedByLegalEntityMTDExtractor extends VolumeTradedByLegalEntityExtractor {
+public class VolumeTradedByLegalEntityPMExtractor extends VolumeTradedByLegalEntityExtractor {
 
-    public VolumeTradedByLegalEntityMTDExtractor() {
+    public VolumeTradedByLegalEntityPMExtractor() {
         this.until = dateUtil.actualDate();
-        this.since = dateUtil.getLastMonthToDate();
+        this.since = dateUtil.lastMonth();
     }
 
-    public VolumeTradedByLegalEntityMTDExtractor(String until) {
+    public VolumeTradedByLegalEntityPMExtractor(String until) {
         this.until = until;
 
         this.since = dateUtil.untilDate(until, 30);

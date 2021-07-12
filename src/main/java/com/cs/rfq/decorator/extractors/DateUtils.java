@@ -5,21 +5,21 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class XToDate {
+public class DateUtils {
 
     private DecimalFormat df = new DecimalFormat("00");
 
-    public String getLastYearToDate() {
+    public String lastYear() {
         LocalDate now = LocalDate.now().minusDays(365);
         return now.getYear() + "-" + df.format(now.getMonthValue()) + "-" + df.format(now.getDayOfMonth());
     }
 
-    public String getLastMonthToDate() {
+    public String lastMonth() {
         LocalDate now = LocalDate.now().minusDays(30);
         return now.getYear() + "-" + df.format(now.getMonthValue()) + "-" + df.format(now.getDayOfMonth());
     }
 
-    public String getLastWeekToDate() {
+    public String lastWeek() {
         LocalDate now = LocalDate.now().minusDays(7);
         return now.getYear() + "-" + df.format(now.getMonthValue()) + "-" + df.format(now.getDayOfMonth());
     }

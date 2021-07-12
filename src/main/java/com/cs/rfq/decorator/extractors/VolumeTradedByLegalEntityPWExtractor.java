@@ -3,14 +3,14 @@ package com.cs.rfq.decorator.extractors;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AverageTradedPriceByLegalEntityWTDExtractor extends AverageTradedPriceByLegalEntityExtractor {
+public class VolumeTradedByLegalEntityPWExtractor extends VolumeTradedByLegalEntityExtractor {
 
-    public AverageTradedPriceByLegalEntityWTDExtractor() {
+    public VolumeTradedByLegalEntityPWExtractor() {
         this.until = dateUtil.actualDate();
-        this.since = dateUtil.getLastWeekToDate();
+        this.since = dateUtil.lastWeek();
     }
 
-    public AverageTradedPriceByLegalEntityWTDExtractor(String until) {
+    public VolumeTradedByLegalEntityPWExtractor(String until) {
         this.until = until;
         this.since = dateUtil.untilDate(until, 7);
     }
@@ -18,7 +18,7 @@ public class AverageTradedPriceByLegalEntityWTDExtractor extends AverageTradedPr
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();
-        results.put(RfqMetadataFieldNames.averageTradedPriceByLegalEntityWeektoDate, volume);
+        results.put(RfqMetadataFieldNames.volumeTradedByLegalEntityWeekToDate, volume);
         return results;
     }
 }
