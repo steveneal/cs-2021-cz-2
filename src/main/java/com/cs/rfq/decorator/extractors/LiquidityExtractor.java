@@ -11,7 +11,7 @@ import java.util.Map;
 public class LiquidityExtractor extends VolumeTradedByBase {
 
     public LiquidityExtractor() {
-        this.since = dateUtil.getOneMonthBeforeDate();
+        this.since = dateUtil.lastMonth();
     }
 
     @Override
@@ -34,7 +34,7 @@ public class LiquidityExtractor extends VolumeTradedByBase {
 
     protected Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();
-        results.put(RfqMetadataFieldNames.liquitityLastMonthToDate, volume);
+        results.put(RfqMetadataFieldNames.liquidityPastMonth, volume);
         return results;
     }
 }

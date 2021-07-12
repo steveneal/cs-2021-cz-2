@@ -32,7 +32,7 @@ public class LiquidityExtractorTest extends AbstractSparkUnitTest {
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        Object result = meta.get(RfqMetadataFieldNames.liquitityLastMonthToDate);
+        Object result = meta.get(RfqMetadataFieldNames.liquidityPastMonth);
 
         assertEquals(500.00, result);
     }
@@ -48,7 +48,7 @@ public class LiquidityExtractorTest extends AbstractSparkUnitTest {
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        Object result = meta.get(RfqMetadataFieldNames.liquitityLastMonthToDate);
+        Object result = meta.get(RfqMetadataFieldNames.liquidityPastMonth);
 
         assertEquals(0.0, result);
     }

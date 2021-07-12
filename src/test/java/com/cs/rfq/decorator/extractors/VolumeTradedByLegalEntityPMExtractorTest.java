@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class VolumeTradedByLegalEntityMTDExtractorTest extends AbstractSparkUnitTest {
+public class VolumeTradedByLegalEntityPMExtractorTest extends AbstractSparkUnitTest {
 
     private Rfq rfq;
 
@@ -21,32 +21,35 @@ public class VolumeTradedByLegalEntityMTDExtractorTest extends AbstractSparkUnit
         rfq.setEntityId(5561279226039690842L);
     }
 
+    //TODO change the actual name of the test
     @Test
     public void checkVolumeWhenAllTradesMatch() {
 
-        Object result = extractData("volume-traded-by-legal-entity.json", "2018-06-01");
-
-        assertEquals(400_000L, result);
+        Object result = extractData("2021-07-08");
+        // Is the sum of the first three rows that have this:
+        // 'EntityId':5561279226039690842, 'SecurityID':'AT0000A0VRQ6'
+        assertEquals(450_000L, result);
     }
 
     @Test
     public void checkVolumeWhenNoTradesMatch() {
 
-        Object result = extractData("volume-traded-1.json", "2018-07-01");
+        Object result = extractData( "2018-07-01");
 
         assertEquals(0L, result);
     }
 
-    private Object extractData(String filename, String since) {
-        String filePath = getClass().getResource(filename).getPath();
+    private Object extractData( String until) {
+        String filePath = getClass().getResource("volume-traded-by-legal-entity.json").getPath();
+
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
-        VolumeTradedByLegalEntityMTDExtractor extractor = new VolumeTradedByLegalEntityMTDExtractor();
-        extractor.setSince(since);
+        VolumeTradedByLegalEntityPMExtractor extractor = new VolumeTradedByLegalEntityPMExtractor(until);
+
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        return meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityMonthToDate);
+        return meta.get(RfqMetadataFieldNames.volumeTradedByLegalEntityPastMonth);
     }
 
 }

@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class AverageTradedPriceByLegalEntityWTDExtractorTest extends AbstractSparkUnitTest {
+public class AverageTradedPriceByLegalEntityPWExtractorTest extends AbstractSparkUnitTest {
 
     private Rfq rfq;
 
@@ -25,9 +25,9 @@ public class AverageTradedPriceByLegalEntityWTDExtractorTest extends AbstractSpa
     @Test
     public void checkVolumeWhenAllTradesMatch() {
 
-        Object result = extractData("2018-01-01");
+        Object result = extractData("2021-07-08");
 
-        assertEquals(132.320, result);
+        assertEquals(145.77, result);
     }
 
     @Test
@@ -38,16 +38,15 @@ public class AverageTradedPriceByLegalEntityWTDExtractorTest extends AbstractSpa
         assertEquals(0L, result);
     }
 
-    private Object extractData(String since) {
-        String filePath = getClass().getResource("volume-traded-1.json").getPath();
+    private Object extractData(String until) {
+        String filePath = getClass().getResource("average-traded-price-by-legal-entity.json").getPath();
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);
 
-        AverageTradedPriceByLegalEntityWTDExtractor extractor = new AverageTradedPriceByLegalEntityWTDExtractor();
-        extractor.setSince(since);
+        AverageTradedPriceByLegalEntityPWExtractor extractor = new AverageTradedPriceByLegalEntityPWExtractor(until);
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq, session, trades);
 
-        return meta.get(RfqMetadataFieldNames.averageTradedPriceByLegalEntityWeektoDate);
+        return meta.get(RfqMetadataFieldNames.averageTradedPriceByLegalEntityPastWeek);
     }
 
 }
