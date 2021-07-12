@@ -21,7 +21,6 @@ public class VolumeTradedByLegalEntityPMExtractorTest extends AbstractSparkUnitT
         rfq.setEntityId(5561279226039690842L);
     }
 
-    //TODO change the actual name of the test
     @Test
     public void checkVolumeWhenAllTradesMatch() {
 
