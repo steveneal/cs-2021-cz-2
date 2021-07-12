@@ -9,5 +9,7 @@ import java.util.Map;
  */
 public interface MetadataPublisher {
     void publishMetadata(Map<RfqMetadataFieldNames, Object> metadata);
-    default void stop() {}
+
+    default void stop() {
+    }
 }

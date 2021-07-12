@@ -1,7 +1,5 @@
 package com.cs.rfq.decorator.extractors;
 
-import org.joda.time.DateTime;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +15,7 @@ public class VolumeTradedByLegalEntityPYExtractor extends VolumeTradedByLegalEnt
 
         this.since = dateUtil.untilDateForPastYear(until);
     }
+
     @Override
     public Map<RfqMetadataFieldNames, Object> setVolumeTraded(Object volume) {
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();

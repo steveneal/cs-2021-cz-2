@@ -1,6 +1,5 @@
 package com.cs.rfq.decorator;
 
-import com.cs.rfq.decorator.Rfq;
 import com.google.gson.JsonParseException;
 import org.junit.Test;
 

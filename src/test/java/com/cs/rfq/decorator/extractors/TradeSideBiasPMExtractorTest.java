@@ -53,7 +53,6 @@ public class TradeSideBiasPMExtractorTest extends AbstractSparkUnitTest {
     }
 
 
-
     private Object extractData(String filename, String until) {
         String filePath = getClass().getResource(filename).getPath();
 

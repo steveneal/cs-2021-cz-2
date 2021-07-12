@@ -7,11 +7,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -40,12 +38,12 @@ public class KafkaPublisher implements MetadataPublisher {
         try {
             producer.send(record, (kafkaMetadata, e) -> {
                 if (e != null) {
-                    log.error("Error publishing message on kafka topic!", e);
+                    log.error("Error publishing message on kafka topic", e);
                     return;
                 }
             }).get();
         } catch (InterruptedException | ExecutionException e) {
-            log.error("Error publishing message on kafka topic!", e);
+            log.error("Error publishing message on kafka topic", e);
         }
     }
 
