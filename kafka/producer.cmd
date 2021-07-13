@@ -1,1 +1,1 @@
-bin\windows\kafka-console-producer.bat --topic rfq --bootstrap-server localhost:9092 --property parse.key=true --property key.separator="|"
+bin\windows\kafka-console-producer.bat --topic rfq --bootstrap-server localhost:9092
