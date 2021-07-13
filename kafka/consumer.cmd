@@ -1,1 +1,1 @@
-bin\windows\kafka-console-consumer.bat --topic rfq-metadata --from-beginning --bootstrap-server localhost:9092
+bin\windows\kafka-console-consumer.bat --topic rfq-metadata --bootstrap-server localhost:9092
