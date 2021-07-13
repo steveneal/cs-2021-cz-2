@@ -6,12 +6,15 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
  * Utility program to generate test trade data.
- *
+ * <p>
  * Give two input sets (counterparty and instrument), an ordered
  * pair of counterparty x instrument is taken form the sets
  * cartesian product. For each ordered pair, a set of n trades is

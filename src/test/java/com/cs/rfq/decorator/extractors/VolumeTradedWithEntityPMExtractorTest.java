@@ -25,7 +25,7 @@ public class VolumeTradedWithEntityPMExtractorTest extends AbstractSparkUnitTest
     @Test
     public void checkVolumeWhenAllTradesMatch() {
 
-        Object result = extractData( "2021-07-08");
+        Object result = extractData("2021-07-08");
 
         assertEquals(450_000L, result);
     }

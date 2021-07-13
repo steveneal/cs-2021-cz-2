@@ -21,7 +21,6 @@ public class VolumeTradedByLegalEntityPMExtractorTest extends AbstractSparkUnitT
         rfq.setEntityId(5561279226039690842L);
     }
 
-    //TODO change the actual name of the test
     @Test
     public void checkVolumeWhenAllTradesMatch() {
 
@@ -34,12 +33,12 @@ public class VolumeTradedByLegalEntityPMExtractorTest extends AbstractSparkUnitT
     @Test
     public void checkVolumeWhenNoTradesMatch() {
 
-        Object result = extractData( "2018-07-01");
+        Object result = extractData("2018-07-01");
 
         assertEquals(0L, result);
     }
 
-    private Object extractData( String until) {
+    private Object extractData(String until) {
         String filePath = getClass().getResource("volume-traded-by-legal-entity.json").getPath();
 
         Dataset<Row> trades = new TradeDataLoader().loadTrades(session, filePath);

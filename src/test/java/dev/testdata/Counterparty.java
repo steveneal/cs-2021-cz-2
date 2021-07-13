@@ -11,7 +11,7 @@ public class Counterparty {
 
     public static Counterparty fromCsv(String line) {
         String[] arr = line.split(",");
-        return new Counterparty(Long.parseLong(arr[0]),Long.parseLong(arr[2]));
+        return new Counterparty(Long.parseLong(arr[0]), Long.parseLong(arr[2]));
     }
 
     @Override

@@ -20,7 +20,6 @@ public class Rfq implements Serializable {
     private static Gson gson = new GsonBuilder().create();
 
     public static Rfq fromJson(String json) {
-        //TODO: build a new RFQ setting all fields from data passed in the RFQ json message
         return gson.fromJson(json, Rfq.class);
     }
 
